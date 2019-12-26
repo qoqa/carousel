@@ -1,44 +1,36 @@
 import { useState } from 'react';
 
 type UseSlideIndexReturn = {
-  previousSlide: () => void;
-  nextSlide: () => void;
+  goToPreviousSlide: () => void;
+  goToNextSlide: () => void;
   handleChangeIndex: (currentIndex: number) => void;
-  slideIndex: number;
+  currentSlideNumber: number;
+  previousSlideNumber: number;
+  nextSlideNumber: number;
 };
 
-function nextIndexInDirection(
-  currentIndex: number,
-  maxIndex: number,
-  direction: 'next' | 'previous'
-): number {
-  const index = currentIndex + (direction === 'next' ? +1 : -1);
-  if (index < 0) {
-    return maxIndex;
-  }
-
-  if (index >= maxIndex) {
-    return 0;
-  }
-
-  return index;
+export function actualIndex(index: number, totalLength: number) {
+  return ((index % totalLength) + totalLength) % totalLength;
 }
 
-export function useSlideIndex(slidesLength: number): UseSlideIndexReturn {
-  const [slideIndex, setSlideIndex] = useState(0);
-  const handleChangeIndex = (current: number) => setSlideIndex(current);
+export function useSlideIndex(length: number): UseSlideIndexReturn {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const handleChangeIndex = (current: number) => setCurrentIndex(current);
 
-  const maxIndex = slidesLength - 1;
-  const previousIndex = nextIndexInDirection(slideIndex, maxIndex, 'previous');
-  const nextIndex = nextIndexInDirection(slideIndex, maxIndex, 'next');
+  // For human readable texts
+  const currentSlideNumber = actualIndex(currentIndex, length) + 1;
+  const previousSlideNumber = actualIndex(currentIndex - 1, length) + 1;
+  const nextSlideNumber = actualIndex(currentIndex + 1, length) + 1;
 
-  const nextSlide = () => setSlideIndex(nextIndex);
-  const previousSlide = () => setSlideIndex(previousIndex);
+  const goToNextSlide = () => setCurrentIndex(currentIndex + 1);
+  const goToPreviousSlide = () => setCurrentIndex(currentIndex - 1);
 
   return {
-    previousSlide,
-    nextSlide,
+    goToPreviousSlide,
+    goToNextSlide,
     handleChangeIndex,
-    slideIndex,
+    currentSlideNumber,
+    previousSlideNumber,
+    nextSlideNumber,
   };
 }

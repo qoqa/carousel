@@ -2,7 +2,6 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core';
 
 export type CarouselSlideProps = {
-  id: string;
   src: string;
   alt: string;
 };

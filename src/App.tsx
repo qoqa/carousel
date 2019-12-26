@@ -13,66 +13,74 @@ import image7 from './images/7.jpg';
 import image8 from './images/8.jpg';
 import image9 from './images/9.jpg';
 import image10 from './images/10.jpg';
+import { CarouselTranslations } from './carousel/Carousel';
 
 const slides = [
   {
     src: image1,
     alt: 'Image 1',
-    id: 'slide1',
   },
   {
     src: image2,
     alt: 'Image 2',
-    id: 'slide2',
   },
   {
     src: image3,
     alt: 'Image 3',
-    id: 'slide3',
   },
   {
     src: image4,
     alt: 'Image 4',
-    id: 'slide4',
   },
   {
     src: image5,
     alt: 'Image 5',
-    id: 'slide5',
   },
   {
     src: image6,
     alt: 'Image 6',
-    id: 'slide6',
   },
   {
     src: image7,
     alt: 'Image 7',
-    id: 'slide7',
   },
   {
     src: image8,
     alt: 'Image 8',
-    id: 'slide8',
   },
   {
     src: image9,
     alt: 'Image 9',
-    id: 'slide9',
   },
   {
     src: image10,
     alt: 'Image 10',
-    id: 'slide10',
   },
 ];
+
+function getTranslations(
+  currentSlideNumber: number,
+  nextSlideNumber: number,
+  previousSlideNumber: number,
+  slidesCount: number
+): CarouselTranslations {
+  return {
+    nextButton: `Go to slide ${nextSlideNumber}`,
+    previousButton: `Go to slide ${previousSlideNumber}`,
+    status: `Slide ${currentSlideNumber} over ${slidesCount}`,
+  };
+}
 
 const App: React.FC = () => {
   return (
     <>
       <CssBaseline />
       <div className="App">
-        <Carousel slides={slides} title="Test Carousel" />
+        <Carousel
+          getTranslations={getTranslations}
+          slides={slides}
+          title="Test Carousel"
+        />
       </div>
     </>
   );

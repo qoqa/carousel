@@ -1,6 +1,8 @@
 import React from 'react';
 import { CarouselSlide, CarouselSlideProps } from './Slide';
 import SwipeableViews from 'react-swipeable-views';
+// @ts-ignore
+import { virtualize, bindKeyboard } from 'react-swipeable-views-utils';
 import {
   Backdrop,
   Fab,
@@ -11,15 +13,15 @@ import {
 } from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
-import { useSlideIndex } from './useSlideIndex';
-
-type CarouselProps = {
-  slides: CarouselSlideProps[];
-  title?: string;
-};
+import { actualIndex, useSlideIndex } from './useSlideIndex';
 
 const useStyles = makeStyles({
-  container: {
+  modalContent: {
+    maxWidth: '90vw',
+    maxHeight: '90vh',
+    margin: '0 auto',
+  },
+  carouselContainer: {
     position: 'relative',
   },
   arrowsContainer: {
@@ -32,54 +34,101 @@ const useStyles = makeStyles({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  srOnly: {
+    position: 'absolute',
+    width: '1px',
+    height: '1px',
+    padding: 0,
+    margin: '-1px',
+    overflow: 'hidden',
+    clip: 'rect(0, 0, 0, 0)',
+    border: 0,
+  },
 });
 
-function CarouselContent({ slides, title }: CarouselProps) {
+const VirualizedSwipableViews = bindKeyboard(virtualize(SwipeableViews));
+
+function CarouselContent({ slides, title, getTranslations }: CarouselProps) {
   const classes = useStyles();
+  const slidesCount = slides.length;
 
   const {
-    previousSlide,
-    nextSlide,
+    goToPreviousSlide,
+    goToNextSlide,
     handleChangeIndex,
-    slideIndex,
-  } = useSlideIndex(slides.length);
+    currentSlideNumber,
+    previousSlideNumber,
+    nextSlideNumber,
+  } = useSlideIndex(slidesCount);
+
+  const translations = getTranslations(
+    currentSlideNumber,
+    nextSlideNumber,
+    previousSlideNumber,
+    slidesCount
+  );
+
+  const slideRenderer = ({ index, key }: any) => {
+    // Translate the virtual index to an actual slide to display.
+    const slideToDisplay = actualIndex(index, slides.length);
+    const slide = slides[slideToDisplay];
+    return <CarouselSlide key={key} {...slide} />;
+  };
 
   return (
-    <div tabIndex={-1}>
+    <>
       {title && <h3>{title}</h3>}
-      <div className={classes.container}>
-        <SwipeableViews
+      <div className={classes.carouselContainer}>
+        <VirualizedSwipableViews
           onChangeIndex={handleChangeIndex}
-          index={slideIndex}
+          index={currentSlideNumber - 1}
           containerStyle={{
             alignItems: 'center',
           }}
-        >
-          {slides.map(slide => (
-            <CarouselSlide key={slide.id} {...slide} />
-          ))}
-        </SwipeableViews>
+          slideRenderer={slideRenderer}
+        />
         <div className={classes.arrowsContainer}>
-          <Fab onClick={previousSlide}>
-            <ArrowBackIcon titleAccess="Previous" />
+          <Fab onClick={goToPreviousSlide}>
+            <span className={classes.srOnly}>
+              {translations.previousButton}
+            </span>
+            <ArrowBackIcon aria-hidden />
           </Fab>
-          <Fab onClick={nextSlide}>
-            <ArrowForwardIcon titleAccess="Next" />
+          <Fab onClick={goToNextSlide}>
+            <span className={classes.srOnly}>{translations.nextButton}</span>
+            <ArrowForwardIcon aria-hidden />
           </Fab>
         </div>
-        <div aria-live="polite">
-          Slide {slideIndex + 1} over {slides.length}
-        </div>
+        <div aria-live="polite">{translations.status}</div>
       </div>
-    </div>
+    </>
   );
 }
 
+export type CarouselTranslations = {
+  nextButton: string;
+  previousButton: string;
+  status: string;
+};
+
+export type CarouselProps = {
+  slides: CarouselSlideProps[];
+  title?: string;
+  getTranslations: (
+    currentSlideNumber: number,
+    nextSlideNumber: number,
+    previousSlideNumber: number,
+    slidesCount: number
+  ) => CarouselTranslations;
+};
+
 export function Carousel(props: CarouselProps) {
+  const classes = useStyles();
+
   return (
     <Modal open={true} BackdropComponent={Backdrop}>
       <Fade appear in={true}>
-        <Paper>
+        <Paper className={classes.modalContent}>
           <CarouselContent {...props} />
         </Paper>
       </Fade>
