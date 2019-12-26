@@ -17,10 +17,18 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: yarn install and test
+    - name: Install
       run: |
         yarn install --pure-lockfile --prod
+      env:
+        CI: true
+    - name: Test
+      run: |
         yarn test
+      env:
+        CI: true
+    - name: Build
+      run: |
         yarn build
       env:
         CI: true
