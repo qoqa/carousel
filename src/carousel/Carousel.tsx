@@ -1,7 +1,14 @@
 import React from 'react';
 import { CarouselSlide, CarouselSlideProps } from './Slide';
 import SwipeableViews from 'react-swipeable-views';
-import { Fab, makeStyles } from '@material-ui/core';
+import {
+  Backdrop,
+  Fab,
+  Fade,
+  makeStyles,
+  Modal,
+  Paper,
+} from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import { useSlideIndex } from './useSlideIndex';
@@ -27,7 +34,7 @@ const useStyles = makeStyles({
   },
 });
 
-export function Carousel({ slides, title }: CarouselProps) {
+function CarouselContent({ slides, title }: CarouselProps) {
   const classes = useStyles();
 
   const {
@@ -38,7 +45,7 @@ export function Carousel({ slides, title }: CarouselProps) {
   } = useSlideIndex(slides.length);
 
   return (
-    <>
+    <div tabIndex={-1}>
       {title && <h3>{title}</h3>}
       <div className={classes.container}>
         <SwipeableViews
@@ -64,6 +71,18 @@ export function Carousel({ slides, title }: CarouselProps) {
           Slide {slideIndex + 1} over {slides.length}
         </div>
       </div>
-    </>
+    </div>
+  );
+}
+
+export function Carousel(props: CarouselProps) {
+  return (
+    <Modal open={true} BackdropComponent={Backdrop}>
+      <Fade appear in={true}>
+        <Paper>
+          <CarouselContent {...props} />
+        </Paper>
+      </Fade>
+    </Modal>
   );
 }
