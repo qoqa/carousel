@@ -30,6 +30,6 @@ jobs:
         if: success()
         run: |
           git config --global user.email "pierredominique.putallaz@gmail.com"
-          git config --global user.name "Pierre-Do"
-          git remote set-url origin https://${{ secrets.GITHUB_TOKEN }}@github.com/Pierre-Do/carousel.git
+          git config --global user.name "${{ gitub.actor }}"
+          git remote set-url origin https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
           yarn deploy
