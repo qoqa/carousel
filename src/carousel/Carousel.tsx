@@ -16,10 +16,22 @@ import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import { actualIndex, useSlideIndex } from './useSlideIndex';
 
 const useStyles = makeStyles({
+  root: {
+    '& > *:focus': {
+      // The modal sets the focus on the Paper within, but it's quite ugly
+      outline: 'none',
+    },
+  },
   modalContent: {
-    maxWidth: '90vw',
-    maxHeight: '90vh',
-    margin: '0 auto',
+    // Dimensions
+    width: '90%',
+    maxHeight: 'calc(100% - 96px)',
+    // Horizontal align
+    margin: '-16px auto 0',
+    // Vertical align
+    position: 'relative',
+    top: '50%',
+    transform: 'translateY(-50%)',
   },
   carouselContainer: {
     position: 'relative',
@@ -33,6 +45,12 @@ const useStyles = makeStyles({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
+    // Critical, otherwise the swipe doesn't work on the underline component
+    pointerEvents: 'none',
+  },
+  arrow: {
+    // The rule above cascades to the button
+    pointerEvents: 'all',
   },
   srOnly: {
     position: 'absolute',
@@ -88,13 +106,13 @@ function CarouselContent({ slides, title, getTranslations }: CarouselProps) {
           slideRenderer={slideRenderer}
         />
         <div className={classes.arrowsContainer}>
-          <Fab onClick={goToPreviousSlide}>
+          <Fab className={classes.arrow} onClick={goToPreviousSlide}>
             <span className={classes.srOnly}>
               {translations.previousButton}
             </span>
             <ArrowBackIcon aria-hidden />
           </Fab>
-          <Fab onClick={goToNextSlide}>
+          <Fab className={classes.arrow} onClick={goToNextSlide}>
             <span className={classes.srOnly}>{translations.nextButton}</span>
             <ArrowForwardIcon aria-hidden />
           </Fab>
@@ -126,9 +144,9 @@ export function Carousel(props: CarouselProps) {
   const classes = useStyles();
 
   return (
-    <Modal open={true} BackdropComponent={Backdrop}>
+    <Modal open={true} BackdropComponent={Backdrop} className={classes.root}>
       <Fade appear in={true}>
-        <Paper className={classes.modalContent}>
+        <Paper elevation={2} className={classes.modalContent}>
           <CarouselContent {...props} />
         </Paper>
       </Fade>
