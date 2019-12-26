@@ -20,7 +20,7 @@ jobs:
       -
         name: Build
         run: |
-          yarn install --pure-lockfile
+          yarn install --pure-lockfile --prod
           SKIP_PREFLIGHT_CHECK=true yarn build
       -
         name: Deploy
