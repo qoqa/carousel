@@ -28,6 +28,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --coverage",
+    "deploy": "npx gh-pages -d build",
     "format": "prettier --config ./.prettierrc --write \"{,!(build|node_modules|coverage)/**/,.}/*{.ts,.tsx,.js,.jsx,.css,.scss,.md,.html,.json}\""
   },
   "eslintConfig": {
