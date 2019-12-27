@@ -13,7 +13,6 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('sm')]: {
       // Dimensions
       width: '100%',
-      maxHeight: 'calc(100% - 96px)',
       // Horizontal align
       margin: '-16px auto 0',
       // Vertical align
@@ -23,12 +22,9 @@ const useStyles = makeStyles(theme => ({
     },
     // On desktop the modal takes the full height, and as much with as it can.
     [theme.breakpoints.up('md')]: {
-      // Dimensions
-      width: 'auto',
-      height: '90%',
-      // Horizontal align
-      margin: '0 auto',
       marginTop: theme.spacing(2),
+      marginLeft: theme.spacing(2),
+      marginRight: theme.spacing(2),
     },
   },
 }));

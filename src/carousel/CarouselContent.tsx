@@ -17,6 +17,14 @@ const useStyles = makeStyles({
   },
   carouselContainer: {
     position: 'relative',
+    lineHeight: 0,
+  },
+  carouselTitle: {
+    margin: '1rem',
+  },
+  carouselStatus: {
+    textAlign: 'end',
+    margin: '1rem',
   },
 });
 
@@ -57,12 +65,13 @@ export function CarouselContent({
 
   return (
     <div className={classes.carouselRoot}>
-      {title && <h2>{title}</h2>}
+      {title && <h2 className={classes.carouselTitle}>{title}</h2>}
       <div className={classes.carouselContainer}>
         <VirualizedSwipableViews
           onChangeIndex={handleChangeIndex}
           index={slideIndex}
           slideRenderer={slideRenderer}
+          animateHeight={true}
         />
         {hasMultipleSlides && (
           <>
@@ -71,7 +80,9 @@ export function CarouselContent({
               goToNextSlide={goToNextSlide}
               translations={translations}
             />
-            <div aria-live="polite">{translations.status}</div>
+            <div aria-live="polite" className={classes.carouselStatus}>
+              {translations.status}
+            </div>
           </>
         )}
       </div>
