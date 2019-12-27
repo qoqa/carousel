@@ -1,26 +1,26 @@
 import React from 'react';
-import { CarouselSlideProps } from './CarouselSlide';
+import { CarouselSlideType } from './CarouselSlide';
 import { CarouselModal } from './CarouselModal';
 import { CarouselContent } from './CarouselContent';
 
-export type CarouselTranslations = {
+export type CarouselTranslationsType = {
   nextButton: string;
   previousButton: string;
   status: string;
 };
 
-export type CarouselProps = {
-  slides: CarouselSlideProps[];
+export type CarouselType = {
+  slides: CarouselSlideType[];
   title?: string;
   getTranslations: (
     currentSlideNumber: number,
     nextSlideNumber: number,
     previousSlideNumber: number,
     slidesCount: number
-  ) => CarouselTranslations;
+  ) => CarouselTranslationsType;
 };
 
-export function Carousel(props: CarouselProps) {
+export function Carousel(props: CarouselType) {
   return (
     <CarouselModal>
       <CarouselContent {...props} />

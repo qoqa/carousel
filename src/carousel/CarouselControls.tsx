@@ -2,7 +2,7 @@ import React from 'react';
 import { Fab, makeStyles } from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
-import { CarouselTranslations } from './Carousel';
+import { CarouselTranslationsType } from './Carousel';
 
 const useStyles = makeStyles(theme => ({
   arrowsContainer: {
@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
 type CarouselControlsProps = {
   goToPreviousSlide: () => void;
   goToNextSlide: () => void;
-  translations: CarouselTranslations;
+  translations: CarouselTranslationsType;
 };
 
 export function CarouselControls({

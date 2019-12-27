@@ -1,9 +1,11 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core';
 
-export type CarouselSlideProps = {
+export type CarouselSlideType = {
   src: string;
   alt: string;
+  width: string | number;
+  height: string | number;
 };
 
 const useStyles = makeStyles(theme => ({
@@ -26,12 +28,18 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export function CarouselSlide({ alt, src }: CarouselSlideProps) {
+export function CarouselSlide({ alt, src, width, height }: CarouselSlideType) {
   const classes = useStyles();
 
   return (
     <div className={classes.slide}>
-      <img className={classes.img} src={src} alt={alt || ''} />
+      <img
+        className={classes.img}
+        src={src}
+        alt={alt || ''}
+        width={width}
+        height={height}
+      />
     </div>
   );
 }

@@ -8,7 +8,7 @@ import { useSlideIndex } from './useSlideIndex';
 import { actualSlideIndex } from './actualSlideIndex';
 import { CarouselSlide } from './CarouselSlide';
 import { CarouselControls } from './CarouselControls';
-import { CarouselProps } from './Carousel';
+import { CarouselType } from './Carousel';
 
 const useStyles = makeStyles({
   carouselRoot: {
@@ -34,7 +34,7 @@ export function CarouselContent({
   slides,
   title,
   getTranslations,
-}: CarouselProps) {
+}: CarouselType) {
   const classes = useStyles();
   const slidesCount = slides.length;
   const hasMultipleSlides = slidesCount > 1;
