@@ -1,5 +1,6 @@
 import React from 'react';
 import { Backdrop, Fade, makeStyles, Modal, Paper } from '@material-ui/core';
+import { useCarouselContext } from './CarouselContext';
 
 const useStyles = makeStyles(theme => ({
   modalRoot: {
@@ -29,16 +30,28 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export function CarouselModal({ children }: any) {
+type CarouselModalProps = {
+  isInitiallyOpen?: boolean;
+  children: any;
+};
+
+export function CarouselModal({
+  children,
+  isInitiallyOpen,
+}: CarouselModalProps) {
   const classes = useStyles();
+  const { isOpen, close } = useCarouselContext();
+
+  const open = isInitiallyOpen || isOpen;
 
   return (
     <Modal
-      open={true}
+      open={open}
+      onClose={close}
       BackdropComponent={Backdrop}
       className={classes.modalRoot}
     >
-      <Fade appear in={true}>
+      <Fade appear in={open}>
         <Paper elevation={2} className={classes.modalContent}>
           {children}
         </Paper>

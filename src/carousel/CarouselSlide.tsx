@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core';
+import { useCarouselContext } from './CarouselContext';
 
 export type CarouselSlideType = {
   src: string;
@@ -11,6 +12,7 @@ export type CarouselSlideType = {
 const useStyles = makeStyles(theme => ({
   slide: {
     display: 'flex',
+    cursor: 'zoom-out',
   },
   img: {
     width: '100%',
@@ -32,9 +34,10 @@ const useStyles = makeStyles(theme => ({
 
 export function CarouselSlide({ alt, src, width, height }: CarouselSlideType) {
   const classes = useStyles();
+  const { close } = useCarouselContext();
 
   return (
-    <div className={classes.slide}>
+    <div className={classes.slide} onClick={close}>
       <img
         className={classes.img}
         src={src}

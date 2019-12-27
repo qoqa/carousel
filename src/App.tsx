@@ -1,21 +1,64 @@
 import React from 'react';
-import { CssBaseline } from '@material-ui/core';
+import {
+  Container,
+  CssBaseline,
+  GridList,
+  GridListTile,
+  makeStyles,
+} from '@material-ui/core';
 import { Carousel } from './carousel';
 import { getDefaultTranslations, slides } from './fixtures';
+import {
+  CarouselContextProvider,
+  useCarouselContext,
+} from './carousel/CarouselContext';
+
+const useStyle = makeStyles({
+  img: {
+    width: '100%',
+    height: 'auto',
+    cursor: 'zoom-in',
+  },
+});
+
+function ImageWithCarousel(props: any) {
+  const classes = useStyle();
+  const { open } = useCarouselContext();
+
+  const handleClick = (e: any) => {
+    e.preventDefault();
+    if (open) {
+      open(props.index);
+    }
+  };
+
+  return (
+    <a href={props.src} onClick={handleClick}>
+      <img alt={props.alt} className={classes.img} {...props} />
+    </a>
+  );
+}
 
 const App: React.FC = () => {
   return (
-    <>
+    <CarouselContextProvider>
       <CssBaseline />
-      <div className="App">
+      <Container className="App">
         <h1>Test App</h1>
+        <GridList cellHeight={160} cols={3}>
+          {slides.map((slide, index) => (
+            <GridListTile key={index}>
+              <ImageWithCarousel index={index} {...slide} />
+            </GridListTile>
+          ))}
+        </GridList>
         <Carousel
           getTranslations={getDefaultTranslations}
           slides={slides}
           title="Test Carousel"
         />
-      </div>
-    </>
+      </Container>
+    </CarouselContextProvider>
   );
 };
 

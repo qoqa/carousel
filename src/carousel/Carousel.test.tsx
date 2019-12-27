@@ -1,15 +1,42 @@
 import React from 'react';
 import { getDefaultTranslations, slides } from '../fixtures';
 import { Carousel } from './Carousel';
-import { render } from '@testing-library/react';
+import { render, wait } from '@testing-library/react';
+import { CarouselContextProvider, useCarouselContext } from './CarouselContext';
 
-const TestCarousel = () => (
-  <Carousel
-    getTranslations={getDefaultTranslations}
-    slides={slides}
-    title="Test Carousel"
-  />
-);
+const TestCarousel = () => {
+  return (
+    <Carousel
+      getTranslations={getDefaultTranslations}
+      slides={slides}
+      title="Test Carousel"
+      isInitiallyOpen
+    />
+  );
+};
+
+const TestCarouselTrigger = ({ slideIndexToOpen }: any) => {
+  const { open, close } = useCarouselContext();
+  if (!open || !close) {
+    return null;
+  }
+
+  return (
+    <>
+      <button onClick={() => open(slideIndexToOpen)}>Open</button>
+      <button onClick={() => close()}>Close</button>
+    </>
+  );
+};
+
+const TestCarouselWithTrigger = ({ slideIndexToOpen }: any) => {
+  return (
+    <CarouselContextProvider>
+      <TestCarouselTrigger slideIndexToOpen={slideIndexToOpen} />
+      <Carousel getTranslations={getDefaultTranslations} slides={slides} />
+    </CarouselContextProvider>
+  );
+};
 
 describe('Carousel', () => {
   it('should display the title', () => {
@@ -47,10 +74,38 @@ describe('Carousel', () => {
 
   it('should not display the controls if there is only one slide', () => {
     const CarouselWithOneSlide = () => (
-      <Carousel getTranslations={getDefaultTranslations} slides={[slides[0]]} />
+      <Carousel
+        isInitiallyOpen
+        getTranslations={getDefaultTranslations}
+        slides={[slides[0]]}
+      />
     );
 
     const { queryByText } = render(<CarouselWithOneSlide />);
     expect(queryByText('Slide 1 over 10')).not.toBeInTheDocument();
+  });
+
+  it('should open the carousel at the right slide', () => {
+    const { getByText } = render(
+      <TestCarouselWithTrigger slideIndexToOpen={2} />
+    );
+
+    getByText('Open').click();
+    expect(getByText('Slide 3 over 10')).toBeInTheDocument();
+  });
+
+  it('should close the carousel', async () => {
+    const { queryByText, getByText } = render(
+      <TestCarouselWithTrigger slideIndexToOpen={0} />
+    );
+
+    getByText('Open').click();
+    expect(queryByText('Slide 1 over 10')).toBeInTheDocument();
+
+    getByText('Close').click();
+    // Async test to work around the animation delay of the modal
+    await wait(() =>
+      expect(queryByText('Slide 1 over 10')).not.toBeInTheDocument()
+    );
   });
 });

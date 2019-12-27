@@ -12,6 +12,7 @@ export type CarouselTranslationsType = {
 export type CarouselType = {
   slides: CarouselSlideType[];
   title?: string;
+  isInitiallyOpen?: boolean;
   getTranslations: (
     currentSlideNumber: number,
     nextSlideNumber: number,
@@ -22,7 +23,7 @@ export type CarouselType = {
 
 export function Carousel(props: CarouselType) {
   return (
-    <CarouselModal>
+    <CarouselModal isInitiallyOpen={props.isInitiallyOpen}>
       <CarouselContent {...props} />
     </CarouselModal>
   );

@@ -9,6 +9,7 @@ import { actualSlideIndex } from './actualSlideIndex';
 import { CarouselSlide } from './CarouselSlide';
 import { CarouselControls } from './CarouselControls';
 import { CarouselType } from './Carousel';
+import { useCarouselContext } from './CarouselContext';
 
 const useStyles = makeStyles({
   carouselRoot: {
@@ -36,6 +37,8 @@ export function CarouselContent({
   getTranslations,
 }: CarouselType) {
   const classes = useStyles();
+  const { indexToDisplay } = useCarouselContext();
+
   const slidesCount = slides.length;
   const hasMultipleSlides = slidesCount > 1;
 
@@ -47,7 +50,7 @@ export function CarouselContent({
     previousSlideNumber,
     nextSlideNumber,
     slideIndex,
-  } = useSlideIndex(slidesCount);
+  } = useSlideIndex(slidesCount, indexToDisplay ?? 0);
 
   const translations = getTranslations(
     currentSlideNumber,
@@ -80,7 +83,12 @@ export function CarouselContent({
               goToNextSlide={goToNextSlide}
               translations={translations}
             />
-            <div aria-live="polite" className={classes.carouselStatus}>
+            <div
+              aria-live="polite"
+              role="status"
+              aria-atomic="true"
+              className={classes.carouselStatus}
+            >
               {translations.status}
             </div>
           </>

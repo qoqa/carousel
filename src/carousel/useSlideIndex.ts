@@ -11,8 +11,11 @@ type UseSlideIndexReturn = {
   slideIndex: number;
 };
 
-export function useSlideIndex(length: number): UseSlideIndexReturn {
-  const [currentIndex, setCurrentIndex] = useState(0);
+export function useSlideIndex(
+  length: number,
+  initialIndex: number
+): UseSlideIndexReturn {
+  const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const handleChangeIndex = (current: number) => setCurrentIndex(current);
 
   // For human readable texts
