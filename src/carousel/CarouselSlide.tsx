@@ -13,6 +13,8 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
   },
   img: {
+    width: '100%',
+    height: 'auto',
     // Horizontal align
     margin: '0 auto',
     // Keep the aspect ratio and takes the maximum height or width possible
