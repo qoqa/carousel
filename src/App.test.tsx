@@ -4,6 +4,6 @@ import App from './App';
 
 test('renders test App without failing', () => {
   const { getByText } = render(<App />);
-  const carousel = getByText(/carousel/i);
-  expect(carousel).toBeInTheDocument();
+  const appTitle = getByText(/Test App/i);
+  expect(appTitle).toBeInTheDocument();
 });

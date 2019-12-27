@@ -38,7 +38,7 @@ export function CarouselSlide({ alt, src, width, height }: CarouselSlideType) {
       <img
         className={classes.img}
         src={src}
-        alt={alt || ''}
+        alt={alt}
         width={width}
         height={height}
       />

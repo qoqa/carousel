@@ -72,5 +72,22 @@
   "devDependencies": {
     "husky": "3.1.0",
     "lint-staged": "9.5.0"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,ts,tsx}",
+      "!src/**/*.d.ts",
+      "!src/**/index.{ts,tsx}",
+      "!src/setup*",
+      "!src/serviceWorker.ts"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "statements": 90,
+        "branches": 90,
+        "functions": 90,
+        "lines": 90
+      }
+    }
   }
 }
