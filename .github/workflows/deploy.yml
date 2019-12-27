@@ -31,5 +31,4 @@ jobs:
         run: |
           git config --global user.email "pierredominique.putallaz@gmail.com"
           git config --global user.name "${{ github.actor }}"
-          git remote set-url origin https://${{ github.actor }}:${{ secrets.githubToken }}@github.com/${{ github.repository }}.git
-          yarn deploy
+          yarn deploy -r origin https://${{ github.actor }}:${{ secrets.githubToken }}@github.com/${{ github.repository }}.git
