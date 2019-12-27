@@ -17,7 +17,6 @@ const useStyles = makeStyles({
   },
   carouselContainer: {
     position: 'relative',
-    maxHeight: '80vh',
   },
 });
 
@@ -65,17 +64,17 @@ export function CarouselContent({
           index={slideIndex}
           slideRenderer={slideRenderer}
         />
+        {hasMultipleSlides && (
+          <>
+            <CarouselControls
+              goToPreviousSlide={goToPreviousSlide}
+              goToNextSlide={goToNextSlide}
+              translations={translations}
+            />
+            <div aria-live="polite">{translations.status}</div>
+          </>
+        )}
       </div>
-      {hasMultipleSlides && (
-        <>
-          <CarouselControls
-            goToPreviousSlide={goToPreviousSlide}
-            goToNextSlide={goToNextSlide}
-            translations={translations}
-          />
-          <div aria-live="polite">{translations.status}</div>
-        </>
-      )}
     </div>
   );
 }

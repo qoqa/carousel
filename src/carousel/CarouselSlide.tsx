@@ -8,13 +8,15 @@ export type CarouselSlideProps = {
 
 const useStyles = makeStyles({
   slide: {
-    width: '100%',
-    height: 'auto',
-    maxWidth: '100%',
+    display: 'flex',
   },
   img: {
-    width: '100%',
-    height: 'auto',
+    // Horizontal align
+    margin: '0 auto',
+    // Keep the aspect ratio and takes the maximum height or width possible
+    maxWidth: '100vw',
+    maxHeight: 'calc(100vh - 10rem)',
+    objectFit: 'scale-down',
   },
 });
 
