@@ -4,7 +4,7 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import { CarouselTranslations } from './Carousel';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   arrowsContainer: {
     position: 'absolute',
     width: '100%',
@@ -20,6 +20,8 @@ const useStyles = makeStyles({
   arrow: {
     // The rule above cascades to the button
     pointerEvents: 'all',
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
   },
   srOnly: {
     position: 'absolute',
@@ -31,7 +33,7 @@ const useStyles = makeStyles({
     clip: 'rect(0, 0, 0, 0)',
     border: 0,
   },
-});
+}));
 
 type CarouselControlsProps = {
   goToPreviousSlide: () => void;
