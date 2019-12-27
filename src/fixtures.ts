@@ -1,3 +1,5 @@
+import { CarouselTranslationsType } from './carousel';
+
 // Test images
 import image1 from './images/1.jpg';
 import image2 from './images/2.jpg';
@@ -9,65 +11,85 @@ import image7 from './images/7.jpg';
 import image8 from './images/8.jpg';
 import image9 from './images/9.jpg';
 import image10 from './images/10.jpg';
-import { CarouselTranslationsType } from './carousel';
+
+import image1Webp from './images/1.webp';
+import image2Webp from './images/2.webp';
+import image3Webp from './images/3.webp';
+import image4Webp from './images/4.webp';
+import image5Webp from './images/5.webp';
+import image6Webp from './images/6.webp';
+import image7Webp from './images/7.webp';
+import image8Webp from './images/8.webp';
+import image9Webp from './images/9.webp';
+import image10Webp from './images/10.webp';
 
 export const slides = [
   {
     src: image1,
+    srcWebp: image1Webp,
     alt: 'Image 1',
     width: 3840,
     height: 2243,
   },
   {
     src: image2,
+    srcWebp: image2Webp,
     alt: 'Image 2',
     width: 3886,
     height: 2426,
   },
   {
     src: image3,
+    srcWebp: image3Webp,
     alt: 'Image 3',
     width: 3953,
     height: 2965,
   },
   {
     src: image4,
+    srcWebp: image4Webp,
     alt: 'Image 4',
     width: 4098,
     height: 2732,
   },
   {
     src: image5,
+    srcWebp: image5Webp,
     alt: 'Image 5',
     width: 4124,
     height: 2600,
   },
   {
     src: image6,
+    srcWebp: image6Webp,
     alt: 'Image 6',
     width: 4242,
     height: 2154,
   },
   {
     src: image7,
+    srcWebp: image7Webp,
     alt: 'Image 7',
     width: 4949,
     height: 3280,
   },
   {
     src: image8,
+    srcWebp: image8Webp,
     alt: 'Image 8',
     width: 5042,
     height: 3445,
   },
   {
     src: image9,
+    srcWebp: image9Webp,
     alt: 'Image 9',
     width: 5163,
     height: 3442,
   },
   {
     src: image10,
+    srcWebp: image10Webp,
     alt: 'Image 10',
     width: 5464,
     height: 3070,

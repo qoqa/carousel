@@ -21,20 +21,23 @@ const useStyle = makeStyles({
   },
 });
 
-function ImageWithCarousel(props: any) {
+function ImageWithCarousel({ src, alt, srcWebp, index }: any) {
   const classes = useStyle();
   const { open } = useCarouselContext();
 
   const handleClick = (e: any) => {
     e.preventDefault();
     if (open) {
-      open(props.index);
+      open(index);
     }
   };
 
   return (
-    <a href={props.src} onClick={handleClick}>
-      <img alt={props.alt} className={classes.img} {...props} />
+    <a href={src} onClick={handleClick}>
+      <picture>
+        <source type="image/webp" srcSet={srcWebp} />
+        <img alt={alt} className={classes.img} src={src} />
+      </picture>
     </a>
   );
 }

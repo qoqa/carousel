@@ -4,6 +4,7 @@ import { useCarouselContext } from './CarouselContext';
 
 export type CarouselSlideType = {
   src: string;
+  srcWebp?: string;
   alt: string;
   width: string | number;
   height: string | number;
@@ -13,6 +14,10 @@ const useStyles = makeStyles(theme => ({
   slide: {
     display: 'flex',
     cursor: 'zoom-out',
+  },
+  picture: {
+    width: 'auto',
+    height: 'auto',
   },
   img: {
     width: '100%',
@@ -32,19 +37,28 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export function CarouselSlide({ alt, src, width, height }: CarouselSlideType) {
+export function CarouselSlide({
+  alt,
+  src,
+  srcWebp,
+  width,
+  height,
+}: CarouselSlideType) {
   const classes = useStyles();
   const { close } = useCarouselContext();
 
   return (
     <div className={classes.slide} onClick={close}>
-      <img
-        className={classes.img}
-        src={src}
-        alt={alt}
-        width={width}
-        height={height}
-      />
+      <picture className={classes.picture}>
+        <source type="image/webp" srcSet={srcWebp} />
+        <img
+          className={classes.img}
+          src={src}
+          alt={alt}
+          width={width}
+          height={height}
+        />
+      </picture>
     </div>
   );
 }
