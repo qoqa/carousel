@@ -1,7 +1,9 @@
 {
-  "name": "carousel",
+  "name": "@pierre-do/image-carousel",
   "version": "0.1.0",
-  "private": true,
+  "files": [
+    "package"
+  ],
   "homepage": "https://pierre-do.github.io/carousel/",
   "dependencies": {
     "@material-ui/core": "4.8.1",
