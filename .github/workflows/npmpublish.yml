@@ -2,7 +2,7 @@ name: Publish Package
 
 on:
   release:
-    types: [created]
+    types: [created, updated]
 
 jobs:
   publish:
@@ -13,16 +13,6 @@ jobs:
         with:
           node-version: 12
           registry-url: https://npm.pkg.github.com/
-          scope: '@pierre-do'
-      - name: Update package version
-        run: |
-          git config --global user.email "pierredominique.putallaz@gmail.com"
-          git config --global user.name "${{ github.actor }}"
-          npm version ${{ steps.vars.outputs.tag }}
-          git commit -n -m "Bump version to ${{ steps.vars.outputs.tag }}"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.githubToken }}
       - name: Build
         run: |
           yarn --prod
