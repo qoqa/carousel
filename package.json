@@ -1,9 +1,7 @@
 {
-  "name": "@pierre-do/image-carousel",
+  "name": "carousel",
+  "private": true,
   "version": "0.1.0",
-  "files": [
-    "package"
-  ],
   "homepage": "https://pierre-do.github.io/carousel/",
   "dependencies": {
     "@material-ui/core": "4.8.1",
@@ -33,7 +31,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --coverage",
     "deploy": "npx gh-pages -d build",
-    "format": "prettier --config ./.prettierrc --write \"{,!(build|node_modules|coverage)/**/,.}/*{.ts,.tsx,.js,.jsx,.css,.scss,.md,.html,.json}\""
+    "format": "prettier --config ./.prettierrc --write \"{,!(build|node_modules|coverage|dist)/**/,.}/*{.ts,.tsx,.js,.jsx,.css,.scss,.md,.html,.json}\""
   },
   "eslintConfig": {
     "extends": [

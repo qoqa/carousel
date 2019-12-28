@@ -8,13 +8,14 @@ import {
   useMediaQuery,
   useTheme,
 } from '@material-ui/core';
-import { Carousel, CarouselImageType } from './carousel';
-import { getDefaultTranslations, slides } from './fixtures';
 import {
+  Carousel,
+  CarouselImageType,
   CarouselContextProvider,
   useCarouselContext,
-} from './carousel/CarouselContext';
-import { ImageWithPlaceholder } from './carousel/ImageWithPlaceholder/ImageWithPlaceholder';
+  ImageWithPlaceholder,
+} from './packages/carousel';
+import { getDefaultTranslations, slides } from './fixtures';
 
 const useStyle = makeStyles({
   img: {

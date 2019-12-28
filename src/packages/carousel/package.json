@@ -1,0 +1,23 @@
+{
+  "name": "@pierre-do/image-carousel",
+  "version": "0.1.1",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "typescript": "3.7.4"
+  },
+  "peerDependencies": {
+    "@material-ui/core": "^4.8",
+    "@material-ui/icons": "^4.5",
+    "react": "^16.12",
+    "react-swipeable-views": "^0.13.3",
+    "react-swipeable-views-utils": "^0.13.3"
+  }
+}
