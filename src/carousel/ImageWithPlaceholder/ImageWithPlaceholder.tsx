@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Fade, makeStyles } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 import Placeholder from './Placeholder';
 
 const useStyle = makeStyles({
@@ -12,9 +12,13 @@ const useStyle = makeStyles({
   },
   picture: {
     display: 'inline-block',
+    transition: 'opacity 250ms',
+  },
+  pictureVisible: {
+    opacity: 1,
   },
   pictureHidden: {
-    visibility: 'hidden',
+    opacity: 0,
     position: 'absolute',
     width: '1px',
     height: '1px',
@@ -70,13 +74,15 @@ export function ImageWithPlaceholder({
     setLoaded(true);
   };
 
-  const pictureClassName = isLoaded ? '' : classes.pictureHidden;
+  const pictureClassName = isLoaded
+    ? classes.pictureVisible
+    : classes.pictureHidden;
   const shouldDisplayLoading = !isLoaded || !src;
 
   return (
     <div className={`${classes.root} ${className}`}>
       {shouldDisplayLoading && (
-        <div className={classes.loaderContainer} data-testid="image-loader">
+        <div className={classes.loaderContainer}>
           <Placeholder
             className={imgClassName}
             width={width}
@@ -85,29 +91,21 @@ export function ImageWithPlaceholder({
           />
         </div>
       )}
-      <Fade
-        in={isLoaded}
-        mountOnEnter={false}
-        appear={false}
-        enter={true}
-        timeout={500}
+      <picture
+        className={`${pictureClassName} ${classes.picture}`}
+        onLoad={imageLoaded}
       >
-        <picture
-          className={`${pictureClassName} ${classes.picture}`}
-          onLoad={imageLoaded}
-        >
-          <source type="image/webp" srcSet={srcWebp} />
-          <img
-            data-testid="image-loaded"
-            className={imgClassName}
-            title={alt}
-            src={src}
-            width={width}
-            height={height}
-            alt={alt}
-          />
-        </picture>
-      </Fade>
+        <source type="image/webp" srcSet={srcWebp} />
+        <img
+          data-testid="image-loaded"
+          className={imgClassName}
+          title={alt}
+          src={src}
+          width={width}
+          height={height}
+          alt={alt}
+        />
+      </picture>
     </div>
   );
 }
