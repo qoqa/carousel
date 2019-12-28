@@ -5,8 +5,10 @@ import {
   GridList,
   GridListTile,
   makeStyles,
+  useMediaQuery,
+  useTheme,
 } from '@material-ui/core';
-import { Carousel } from './carousel';
+import { Carousel, CarouselImageType } from './carousel';
 import { getDefaultTranslations, slides } from './fixtures';
 import {
   CarouselContextProvider,
@@ -53,19 +55,32 @@ function ImageWithCarousel({
   );
 }
 
+type GalleryProps = {
+  slides: CarouselImageType[];
+};
+
+function Gallery({ slides }: GalleryProps) {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
+
+  return (
+    <GridList cellHeight={160} cols={isMobile ? 1 : 3}>
+      {slides.map((slide, index) => (
+        <GridListTile key={index}>
+          <ImageWithCarousel index={index} {...slide} />
+        </GridListTile>
+      ))}
+    </GridList>
+  );
+}
+
 const App: React.FC = () => {
   return (
     <CarouselContextProvider>
       <CssBaseline />
       <Container className="App">
         <h1>Test App</h1>
-        <GridList cellHeight={160} cols={3}>
-          {slides.map((slide, index) => (
-            <GridListTile key={index}>
-              <ImageWithCarousel index={index} {...slide} />
-            </GridListTile>
-          ))}
-        </GridList>
+        <Gallery slides={slides} />
         <Carousel
           getTranslations={getDefaultTranslations}
           slides={slides}
