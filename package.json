@@ -79,7 +79,8 @@
       "!src/**/*.d.ts",
       "!src/**/index.{ts,tsx}",
       "!src/setup*",
-      "!src/serviceWorker.ts"
+      "!src/serviceWorker.ts",
+      "!src/**/dist/**/*"
     ]
   }
 }
