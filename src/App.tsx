@@ -22,7 +22,14 @@ const useStyle = makeStyles({
   },
 });
 
-function ImageWithCarousel({ src, alt, srcWebp, index, width, height }: any) {
+function ImageWithCarousel({
+  src,
+  srcPreview,
+  alt,
+  index,
+  width,
+  height,
+}: any) {
   const classes = useStyle();
   const { open } = useCarouselContext();
 
@@ -36,8 +43,7 @@ function ImageWithCarousel({ src, alt, srcWebp, index, width, height }: any) {
   return (
     <a href={src} onClick={handleClick}>
       <ImageWithPlaceholder
-        src={src}
-        srcWebp={srcWebp}
+        src={srcPreview}
         alt={alt}
         width={width}
         height={height}

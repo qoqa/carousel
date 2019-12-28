@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core';
 import { useCarouselContext } from './CarouselContext';
 import { ImageWithPlaceholder } from './ImageWithPlaceholder/ImageWithPlaceholder';
 
-export type CarouselSlideType = {
+type CarouselSlideType = {
   src: string;
   srcWebp?: string;
   alt: string;

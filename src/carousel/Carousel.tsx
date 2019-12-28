@@ -1,5 +1,4 @@
 import React from 'react';
-import { CarouselSlideType } from './CarouselSlide';
 import { CarouselModal } from './CarouselModal';
 import { CarouselContent } from './CarouselContent';
 
@@ -9,8 +8,17 @@ export type CarouselTranslationsType = {
   status: string;
 };
 
+export type CarouselImageType = {
+  src: string;
+  srcPreview: string;
+  srcWebp?: string;
+  alt: string;
+  width: string | number;
+  height: string | number;
+};
+
 export type CarouselType = {
-  slides: CarouselSlideType[];
+  slides: CarouselImageType[];
   title?: string;
   isInitiallyOpen?: boolean;
   getTranslations: (
