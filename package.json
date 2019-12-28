@@ -1,8 +1,20 @@
 {
-  "name": "carousel",
-  "private": true,
-  "version": "0.1.0",
+  "name": "@pierre-do/image-carousel",
+  "version": "0.1.1",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "license": "MIT",
   "homepage": "https://pierre-do.github.io/carousel/",
+  "files": [
+    "dist"
+  ],
+  "peerDependencies": {
+    "@material-ui/core": "^4.8",
+    "@material-ui/icons": "^4.5",
+    "react": "^16.12",
+    "react-swipeable-views": "^0.13.3",
+    "react-swipeable-views-utils": "^0.13.3"
+  },
   "dependencies": {
     "@material-ui/core": "4.8.1",
     "@material-ui/icons": "4.5.1",
@@ -29,6 +41,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build:package": "tsc --build src/carousel/tsconfig.json",
     "test": "react-scripts test --coverage",
     "deploy": "npx gh-pages -d build",
     "format": "prettier --config ./.prettierrc --write \"{,!(build|node_modules|coverage|dist)/**/,.}/*{.ts,.tsx,.js,.jsx,.css,.scss,.md,.html,.json}\""

@@ -1,5 +1,5 @@
 import React from 'react';
-import { getDefaultTranslations, slides } from '../../../fixtures';
+import { getDefaultTranslations, slides } from '../fixtures';
 import { Carousel } from './Carousel';
 import { render, wait, act, fireEvent } from '@testing-library/react';
 import { CarouselContextProvider, useCarouselContext } from './CarouselContext';

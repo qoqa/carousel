@@ -1,7 +1,4 @@
-import {
-  CarouselTranslationsType,
-  CarouselImageType,
-} from './packages/carousel';
+import { CarouselTranslationsType, CarouselImageType } from './carousel';
 
 // Test images
 import image1 from './images/1.jpg';

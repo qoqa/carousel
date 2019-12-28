@@ -14,7 +14,7 @@ import {
   CarouselContextProvider,
   useCarouselContext,
   ImageWithPlaceholder,
-} from './packages/carousel';
+} from './carousel';
 import { getDefaultTranslations, slides } from './fixtures';
 
 const useStyle = makeStyles({
