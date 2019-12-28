@@ -14,9 +14,21 @@ jobs:
           node-version: 12
           registry-url: https://npm.pkg.github.com/
           scope: '@pierre-do'
-      - run: yarn
-      - run: yarn build:package
-      - run: npm publish
+      - name: Update package version
+        run: |
+          npm version $VERSION
+          git commit -n -m "Bump version to $VERSION"
+          git push
         env:
-          NODE_AUTH_TOKEN: ${{secrets.githubToken}}
+          GITHUB_TOKEN: ${{ secrets.githubToken }}
+          VERSION: ${{ steps.vars.outputs.tag }}
+      - name: Build
+        run: |
+          yarn --prod
+          yarn build:package
+      - name: Publish
+        run: |
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.githubToken }}
 
