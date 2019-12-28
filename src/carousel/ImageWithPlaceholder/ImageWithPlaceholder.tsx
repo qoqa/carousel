@@ -42,6 +42,7 @@ type ImageWithLoaderProps = {
   alt?: string;
   width?: number | string;
   height?: number | string;
+  className?: string;
   imgClassName?: string;
 };
 
@@ -51,6 +52,7 @@ export function ImageWithPlaceholder({
   alt,
   width,
   height,
+  className,
   imgClassName,
 }: ImageWithLoaderProps) {
   const [isLoaded, setLoaded] = useState<boolean>(false);
@@ -72,7 +74,7 @@ export function ImageWithPlaceholder({
   const shouldDisplayLoading = !isLoaded || !src;
 
   return (
-    <div className={classes.root}>
+    <div className={`${classes.root} ${className}`}>
       {shouldDisplayLoading && (
         <div className={classes.loaderContainer} data-testid="image-loader">
           <Placeholder
@@ -83,7 +85,13 @@ export function ImageWithPlaceholder({
           />
         </div>
       )}
-      <Fade in={isLoaded}>
+      <Fade
+        in={isLoaded}
+        mountOnEnter={false}
+        appear={false}
+        enter={true}
+        timeout={500}
+      >
         <picture
           className={`${pictureClassName} ${classes.picture}`}
           onLoad={imageLoaded}

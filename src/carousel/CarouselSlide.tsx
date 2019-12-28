@@ -16,15 +16,13 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     cursor: 'zoom-out',
   },
-  picture: {
-    width: 'auto',
-    height: 'auto',
+  imgContainer: {
+    // Horizontal align
+    margin: '0 auto',
   },
   img: {
     width: '100%',
     height: 'auto',
-    // Horizontal align
-    margin: '0 auto',
     // Keep the aspect ratio and takes the maximum height or width possible
     maxWidth: '100vw',
     maxHeight: 'calc(100vh - 10rem)',
@@ -56,6 +54,7 @@ export function CarouselSlide({
         width={width}
         height={height}
         alt={alt}
+        className={classes.imgContainer}
         imgClassName={classes.img}
       />
     </div>
