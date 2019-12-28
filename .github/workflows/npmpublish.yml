@@ -16,6 +16,8 @@ jobs:
           scope: '@pierre-do'
       - name: Update package version
         run: |
+          git config --global user.email "pierredominique.putallaz@gmail.com"
+          git config --global user.name "${{ github.actor }}"
           npm version $VERSION
           git commit -n -m "Bump version to $VERSION"
           git push
