@@ -1,7 +1,7 @@
 import React from 'react';
 import { getDefaultTranslations, slides } from '../fixtures';
 import { Carousel } from './Carousel';
-import { render, wait } from '@testing-library/react';
+import { render, wait, act, fireEvent } from '@testing-library/react';
 import { CarouselContextProvider, useCarouselContext } from './CarouselContext';
 
 const TestCarousel = () => {
@@ -44,10 +44,19 @@ describe('Carousel', () => {
     expect(getByText('Test Carousel')).toBeInTheDocument();
   });
 
-  it('should display the first image', () => {
-    const { getByAltText } = render(<TestCarousel />);
-    const firstImage = getByAltText(slides[0].alt);
-    expect(firstImage).toBeInTheDocument();
+  it('should display the first image', async () => {
+    const { queryByAltText, getByAltText } = render(<TestCarousel />);
+    const imageAltText = slides[0].alt;
+
+    act(() => {
+      // Triggers the load event that mutates the state. JSDom doesn't
+      // automatically load the image.
+      fireEvent.load(getByAltText(imageAltText));
+    });
+
+    await wait(() => {
+      expect(queryByAltText(imageAltText)).toBeVisible();
+    });
   });
 
   it('should go to the next slide if the next button is pressed', () => {

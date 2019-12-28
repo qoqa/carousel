@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core';
 import { useCarouselContext } from './CarouselContext';
+import { ImageWithPlaceholder } from './ImageWithPlaceholder/ImageWithPlaceholder';
 
 export type CarouselSlideType = {
   src: string;
@@ -49,16 +50,14 @@ export function CarouselSlide({
 
   return (
     <div className={classes.slide} onClick={close}>
-      <picture className={classes.picture}>
-        <source type="image/webp" srcSet={srcWebp} />
-        <img
-          className={classes.img}
-          src={src}
-          alt={alt}
-          width={width}
-          height={height}
-        />
-      </picture>
+      <ImageWithPlaceholder
+        src={src}
+        srcWebp={srcWebp}
+        width={width}
+        height={height}
+        alt={alt}
+        imgClassName={classes.img}
+      />
     </div>
   );
 }

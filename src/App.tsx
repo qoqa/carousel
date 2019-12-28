@@ -12,6 +12,7 @@ import {
   CarouselContextProvider,
   useCarouselContext,
 } from './carousel/CarouselContext';
+import { ImageWithPlaceholder } from './carousel/ImageWithPlaceholder/ImageWithPlaceholder';
 
 const useStyle = makeStyles({
   img: {
@@ -21,7 +22,7 @@ const useStyle = makeStyles({
   },
 });
 
-function ImageWithCarousel({ src, alt, srcWebp, index }: any) {
+function ImageWithCarousel({ src, alt, srcWebp, index, width, height }: any) {
   const classes = useStyle();
   const { open } = useCarouselContext();
 
@@ -34,10 +35,14 @@ function ImageWithCarousel({ src, alt, srcWebp, index }: any) {
 
   return (
     <a href={src} onClick={handleClick}>
-      <picture>
-        <source type="image/webp" srcSet={srcWebp} />
-        <img alt={alt} className={classes.img} src={src} />
-      </picture>
+      <ImageWithPlaceholder
+        src={src}
+        srcWebp={srcWebp}
+        alt={alt}
+        width={width}
+        height={height}
+        imgClassName={classes.img}
+      />
     </a>
   );
 }
