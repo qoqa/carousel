@@ -18,12 +18,11 @@ jobs:
         run: |
           git config --global user.email "pierredominique.putallaz@gmail.com"
           git config --global user.name "${{ github.actor }}"
-          npm version $VERSION
-          git commit -n -m "Bump version to $VERSION"
+          npm version ${{ steps.vars.outputs.tag }}
+          git commit -n -m "Bump version to ${{ steps.vars.outputs.tag }}"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.githubToken }}
-          VERSION: ${{ steps.vars.outputs.tag }}
       - name: Build
         run: |
           yarn --prod
