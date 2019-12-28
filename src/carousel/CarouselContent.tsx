@@ -74,13 +74,9 @@ export function CarouselContent({
           onChangeIndex={handleChangeIndex}
           index={slideIndex}
           slideRenderer={slideRenderer}
-          animateHeight={true}
+          animateHeight={false}
           overscanSlideAfter={1}
           overscanSlideBefore={1}
-          action={({ updateHeight }: any) => {
-            // Fix for IE11
-            updateHeight();
-          }}
         />
         {hasMultipleSlides && (
           <>
