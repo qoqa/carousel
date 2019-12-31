@@ -77,12 +77,6 @@ export function CarouselContent({
           animateHeight={true}
           overscanSlideAfter={1}
           overscanSlideBefore={1}
-          action={({ updateHeight }: any) => {
-            // Try to workaround an issue with IE11
-            requestAnimationFrame(() => {
-              updateHeight();
-            });
-          }}
         />
         {hasMultipleSlides && (
           <>
