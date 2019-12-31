@@ -41,7 +41,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "build:package": "tsc --build src/carousel/tsconfig.json",
+    "build:package": "npx tsc --build src/carousel/tsconfig.json",
     "test": "react-scripts test --coverage",
     "deploy": "npx gh-pages -d build",
     "format": "prettier --config ./.prettierrc --write \"{,!(build|node_modules|coverage|dist)/**/,.}/*{.ts,.tsx,.js,.jsx,.css,.scss,.md,.html,.json}\""
