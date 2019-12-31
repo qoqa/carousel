@@ -37,8 +37,8 @@ type ImageWithLoaderProps = {
   src: string;
   srcWebp?: string;
   alt?: string;
-  width?: number | string;
-  height?: number | string;
+  width: number;
+  height: number;
   className?: string;
   imgClassName?: string;
 };

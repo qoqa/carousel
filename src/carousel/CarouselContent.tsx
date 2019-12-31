@@ -10,6 +10,7 @@ import { CarouselSlide } from './CarouselSlide';
 import { CarouselControls } from './CarouselControls';
 import { CarouselType } from './Carousel';
 import { useCarouselContext } from './CarouselContext';
+import { supportsObjectFit } from './browserUtils';
 
 const useStyles = makeStyles({
   carouselRoot: {
@@ -30,6 +31,10 @@ const useStyles = makeStyles({
 });
 
 const VirualizedSwipableViews = bindKeyboard(virtualize(SwipeableViews));
+
+// Depending on the browser, we don't want to animate the height.
+// Typically IE11 doesn't support this.
+const supportAnimatedHeight = supportsObjectFit();
 
 export function CarouselContent({
   slides,
@@ -74,7 +79,7 @@ export function CarouselContent({
           onChangeIndex={handleChangeIndex}
           index={slideIndex}
           slideRenderer={slideRenderer}
-          animateHeight={true}
+          animateHeight={supportAnimatedHeight}
           overscanSlideAfter={1}
           overscanSlideBefore={1}
         />

@@ -13,8 +13,8 @@ export type CarouselImageType = {
   srcPreview: string;
   srcWebp?: string;
   alt: string;
-  width: string | number;
-  height: string | number;
+  width: number;
+  height: number;
 };
 
 export type CarouselType = {

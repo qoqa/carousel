@@ -1,16 +1,13 @@
 import React from 'react';
 
 type PlaceholderProps = {
-  height?: number | string;
-  width?: number | string;
+  height: number;
+  width: number;
   alt?: string;
   className?: string;
 };
 
-function getInlineSVG(
-  width: number | string = 0,
-  height: number | string = 0
-): string {
+function getInlineSVG(width: number, height: number): string {
   return `
   <svg
       xmlns="http://www.w3.org/2000/svg"

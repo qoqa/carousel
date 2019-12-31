@@ -7,8 +7,8 @@ type CarouselSlideType = {
   src: string;
   srcWebp?: string;
   alt: string;
-  width: string | number;
-  height: string | number;
+  width: number;
+  height: number;
 };
 
 const useStyles = makeStyles(theme => ({
