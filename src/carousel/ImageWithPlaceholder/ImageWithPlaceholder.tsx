@@ -28,13 +28,6 @@ const useStyle = makeStyles({
     clip: 'rect(0, 0, 0, 0)',
     border: 0,
   },
-  loaderContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100%',
-    width: '100%',
-  },
   loaderAnimation: {
     position: 'absolute',
   },
@@ -71,19 +64,17 @@ export function ImageWithPlaceholder({
   const pictureClassName = isLoaded
     ? classes.pictureVisible
     : classes.pictureHidden;
-  const shouldDisplayLoading = !isLoaded || !src;
+  const shouldDisplayPlaceholder = !isLoaded;
 
   return (
     <div className={`${classes.root} ${className}`}>
-      {shouldDisplayLoading && (
-        <div className={classes.loaderContainer}>
-          <Placeholder
-            className={imgClassName}
-            width={width}
-            height={height}
-            alt={alt}
-          />
-        </div>
+      {shouldDisplayPlaceholder && (
+        <Placeholder
+          className={imgClassName}
+          width={width}
+          height={height}
+          alt={alt}
+        />
       )}
       <picture
         className={`${pictureClassName} ${classes.picture}`}
@@ -91,7 +82,6 @@ export function ImageWithPlaceholder({
       >
         <source type="image/webp" srcSet={srcWebp} />
         <img
-          data-testid="image-loaded"
           className={imgClassName}
           title={alt}
           src={src}
