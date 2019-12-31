@@ -1,7 +1,7 @@
 # Image Carousel
 
 Similar to [material-auto-rotating-carousel](https://github.com/TeamWertarbyte/material-auto-rotating-carousel),
-but to display a image gallery only.
+but to display a carousel with only images.
 
 Based on Material-UI
 

@@ -8,7 +8,8 @@ const App: React.FC = () => {
     <>
       <CssBaseline />
       <Container className="App">
-        <h1>Test App</h1>
+        <h1>Galleries with Carousel</h1>
+        <p>Click on one if the image below to open the carousel.</p>
         <Gallery slides={slides} title="My Gallery" />
         <Gallery slides={[slides[9]]} title="Gallery with one image" />
       </Container>
