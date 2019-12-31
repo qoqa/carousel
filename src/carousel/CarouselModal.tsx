@@ -14,13 +14,6 @@ const useStyles = makeStyles(theme => ({
     position: 'relative',
     top: '50%',
     transform: 'translateY(-50%)',
-    // On mobile, the modal takes the full width, and as much height as it can.
-    [theme.breakpoints.down('sm')]: {
-      // Dimensions
-      width: '100%',
-      // Horizontal align
-      margin: '-16px auto 0',
-    },
     // On desktop the modal takes the full height, and as much with as it can.
     [theme.breakpoints.up('md')]: {
       marginLeft: theme.spacing(2),
