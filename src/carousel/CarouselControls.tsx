@@ -1,5 +1,11 @@
 import React from 'react';
-import { Fab, makeStyles } from '@material-ui/core';
+import {
+  Fab,
+  makeStyles,
+  Slide,
+  useMediaQuery,
+  useTheme,
+} from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import { CarouselTranslationsType } from './Carousel';
@@ -47,17 +53,27 @@ export function CarouselControls({
   translations,
 }: CarouselControlsProps) {
   const classes = useStyles();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
+
+  if (isMobile) {
+    return null;
+  }
 
   return (
     <div className={classes.arrowsContainer}>
-      <Fab className={classes.arrow} onClick={goToPreviousSlide}>
-        <span className={classes.srOnly}>{translations.previousButton}</span>
-        <ArrowBackIcon aria-hidden />
-      </Fab>
-      <Fab className={classes.arrow} onClick={goToNextSlide}>
-        <span className={classes.srOnly}>{translations.nextButton}</span>
-        <ArrowForwardIcon aria-hidden />
-      </Fab>
+      <Slide in={true} direction="right">
+        <Fab className={classes.arrow} onClick={goToPreviousSlide}>
+          <span className={classes.srOnly}>{translations.previousButton}</span>
+          <ArrowBackIcon aria-hidden />
+        </Fab>
+      </Slide>
+      <Slide in={true} direction="left">
+        <Fab className={classes.arrow} onClick={goToNextSlide}>
+          <span className={classes.srOnly}>{translations.nextButton}</span>
+          <ArrowForwardIcon aria-hidden />
+        </Fab>
+      </Slide>
     </div>
   );
 }

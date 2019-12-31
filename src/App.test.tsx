@@ -5,7 +5,7 @@ import App from './App';
 describe('App', () => {
   it('should renders test App without failing', () => {
     const { getByText } = render(<App />);
-    const appTitle = getByText(/Test App/i);
+    const appTitle = getByText('Galleries with Carousel');
     expect(appTitle).toBeInTheDocument();
   });
 

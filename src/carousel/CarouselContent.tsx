@@ -1,5 +1,6 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core';
+import { IconButton, makeStyles } from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
 // The types for react-swipeable-views are not up to date.
 // @ts-ignore
 import { bindKeyboard, virtualize } from 'react-swipeable-views-utils';
@@ -21,8 +22,15 @@ const useStyles = makeStyles({
     position: 'relative',
     lineHeight: 0,
   },
+  carouselHeader: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
   carouselTitle: {
     margin: '1rem',
+  },
+  carouselCloseButton: {
+    margin: '0.5rem',
   },
   carouselStatus: {
     textAlign: 'end',
@@ -42,7 +50,7 @@ export function CarouselContent({
   getTranslations,
 }: CarouselType) {
   const classes = useStyles();
-  const { indexToDisplay } = useCarouselContext();
+  const { indexToDisplay, close } = useCarouselContext();
 
   const slidesCount = slides.length;
   const hasMultipleSlides = slidesCount > 1;
@@ -73,7 +81,12 @@ export function CarouselContent({
 
   return (
     <div className={classes.carouselRoot}>
-      {title && <h2 className={classes.carouselTitle}>{title}</h2>}
+      <div className={classes.carouselHeader}>
+        <h2 className={classes.carouselTitle}>{title}</h2>
+        <IconButton className={classes.carouselCloseButton} onClick={close}>
+          <CloseIcon />
+        </IconButton>
+      </div>
       <div className={classes.carouselContainer}>
         <VirualizedSwipableViews
           onChangeIndex={handleChangeIndex}

@@ -47,7 +47,7 @@ function ClickableImage({ src, srcPreview, alt, index, width, height }: any) {
 
 type GalleryProps = {
   slides: CarouselImageType[];
-  title: string;
+  title?: string;
 };
 
 export function Gallery({ slides, title }: GalleryProps) {
