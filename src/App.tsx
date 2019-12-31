@@ -10,6 +10,7 @@ const App: React.FC = () => {
       <Container className="App">
         <h1>Test App</h1>
         <Gallery slides={slides} title="My Gallery" />
+        <Gallery slides={[slides[9]]} title="Gallery with one image" />
       </Container>
     </>
   );

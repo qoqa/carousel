@@ -84,22 +84,20 @@ export function CarouselContent({
           overscanSlideBefore={1}
         />
         {hasMultipleSlides && (
-          <>
-            <CarouselControls
-              goToPreviousSlide={goToPreviousSlide}
-              goToNextSlide={goToNextSlide}
-              translations={translations}
-            />
-            <div
-              aria-live="polite"
-              role="status"
-              aria-atomic="true"
-              className={classes.carouselStatus}
-            >
-              {translations.status}
-            </div>
-          </>
+          <CarouselControls
+            goToPreviousSlide={goToPreviousSlide}
+            goToNextSlide={goToNextSlide}
+            translations={translations}
+          />
         )}
+        <div
+          aria-live="polite"
+          role="status"
+          aria-atomic="true"
+          className={classes.carouselStatus}
+        >
+          {hasMultipleSlides && translations.status}
+        </div>
       </div>
     </div>
   );
