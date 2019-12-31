@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core';
 import Placeholder from './Placeholder';
 
@@ -61,12 +61,6 @@ export function ImageWithPlaceholder({
 }: ImageWithLoaderProps) {
   const [isLoaded, setLoaded] = useState<boolean>(false);
   const classes = useStyle();
-
-  // By default the image is not loaded. If the same component receives a different 'src'
-  // props, the previous image is removed.
-  useMemo(() => {
-    setLoaded(false);
-  }, [src, setLoaded]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Callback when the image is actually loaded. This assumes that the browser
   // loads the image even if it's not on the screen.
