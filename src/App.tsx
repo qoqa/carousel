@@ -1,11 +1,30 @@
 import React from 'react';
-import { Container, CssBaseline } from '@material-ui/core';
+import {
+  Container,
+  createMuiTheme,
+  CssBaseline,
+  ThemeProvider,
+} from '@material-ui/core';
 import { Gallery } from './Gallery';
 import { slides } from './fixtures';
+import useDarkMode from './useDarkMode';
+
+export const lightTheme = createMuiTheme({
+  palette: {
+    type: 'light',
+  },
+});
+
+export const darkTheme = createMuiTheme({
+  palette: {
+    type: 'dark',
+  },
+});
 
 const App: React.FC = () => {
+  const darkMode = useDarkMode();
   return (
-    <>
+    <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
       <CssBaseline />
       <Container>
         <h1>Galleries with Carousel</h1>
@@ -15,7 +34,7 @@ const App: React.FC = () => {
         <h2>Gallery with no title</h2>
         <Gallery slides={[slides[7]]} />
       </Container>
-    </>
+    </ThemeProvider>
   );
 };
 
