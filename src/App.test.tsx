@@ -10,8 +10,8 @@ describe('App', () => {
   });
 
   it('should open the modal', () => {
-    const { getByAltText, queryByText } = render(<App />);
+    const { getByAltText, queryAllByText } = render(<App />);
     getByAltText('Image 1').click();
-    expect(queryByText('Test Carousel')).toBeInTheDocument();
+    expect(queryAllByText(/My Gallery/i)[1]).toBeInTheDocument();
   });
 });

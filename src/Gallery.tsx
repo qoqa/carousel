@@ -1,29 +1,3 @@
-# Image Carousel
-
-Similar to [material-auto-rotating-carousel](https://github.com/TeamWertarbyte/material-auto-rotating-carousel),
-but to display a image gallery only.
-
-Based on Material-UI
-
-## Demo
-
-[https://pierre-do.github.io/carousel/](https://pierre-do.github.io/carousel/)
-
-## Getting Started
-
-Add the following to your `.npmrc`
-
-```text
-@pierre-do:registry=https://npm.pkg.github.com
-```
-
-Then run `yarn add @pierre-do/carousel`.
-
-## Example
-
-You can implement a very simple gallery with clickable images as suggeted below.
-
-```typescript jsx
 import React from 'react';
 import {
   Carousel,
@@ -31,8 +5,7 @@ import {
   CarouselImageType,
   ImageWithPlaceholder,
   useCarouselContext,
-  CarouselTranslationsType,
-} from '@pierre-do/carousel';
+} from './carousel';
 import {
   GridList,
   GridListTile,
@@ -40,6 +13,7 @@ import {
   useMediaQuery,
   useTheme,
 } from '@material-ui/core';
+import { getDefaultTranslations } from './fixtures';
 
 const useStyle = makeStyles({
   img: {
@@ -48,19 +22,6 @@ const useStyle = makeStyles({
     cursor: 'zoom-in',
   },
 });
-
-function getDefaultTranslations(
-  currentSlideNumber: number,
-  nextSlideNumber: number,
-  previousSlideNumber: number,
-  slidesCount: number
-): CarouselTranslationsType {
-  return {
-    nextButton: `Go to slide ${nextSlideNumber}`,
-    previousButton: `Go to slide ${previousSlideNumber}`,
-    status: `Slide ${currentSlideNumber} over ${slidesCount}`,
-  };
-}
 
 function ClickableImage({ src, srcPreview, alt, index, width, height }: any) {
   const classes = useStyle();
@@ -111,4 +72,3 @@ export function Gallery({ slides, title }: GalleryProps) {
     </CarouselContextProvider>
   );
 }
-```

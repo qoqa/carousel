@@ -1,13 +1,15 @@
 import React, { createContext, useContext, useState } from 'react';
 
 export type CarouselContextType = {
-  open?: (index: number) => void;
-  close?: () => void;
+  open: (index: number) => void;
+  close: () => void;
   indexToDisplay: number | null;
   isOpen: boolean;
 };
 
 const CarouselContext = createContext<CarouselContextType>({
+  close: () => void 0,
+  open: () => void 0,
   indexToDisplay: null,
   isOpen: false,
 });

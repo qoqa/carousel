@@ -17,9 +17,6 @@ const TestCarousel = () => {
 
 const TestCarouselTrigger = ({ slideIndexToOpen }: any) => {
   const { open, close } = useCarouselContext();
-  if (!open || !close) {
-    return null;
-  }
 
   return (
     <>
