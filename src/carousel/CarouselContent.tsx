@@ -74,7 +74,7 @@ export function CarouselContent({
           onChangeIndex={handleChangeIndex}
           index={slideIndex}
           slideRenderer={slideRenderer}
-          animateHeight={false}
+          animateHeight={true}
           overscanSlideAfter={1}
           overscanSlideBefore={1}
         />
