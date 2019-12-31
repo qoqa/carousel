@@ -4,12 +4,12 @@
     "main.js.map": "/carousel/static/js/main.904e711e.chunk.js.map",
     "runtime-main.js": "/carousel/static/js/runtime-main.4cdf4280.js",
     "runtime-main.js.map": "/carousel/static/js/runtime-main.4cdf4280.js.map",
-    "static/js/2.9eea2a5f.chunk.js": "/carousel/static/js/2.9eea2a5f.chunk.js",
-    "static/js/2.9eea2a5f.chunk.js.map": "/carousel/static/js/2.9eea2a5f.chunk.js.map",
+    "static/js/2.4aab933c.chunk.js": "/carousel/static/js/2.4aab933c.chunk.js",
+    "static/js/2.4aab933c.chunk.js.map": "/carousel/static/js/2.4aab933c.chunk.js.map",
     "index.html": "/carousel/index.html",
-    "precache-manifest.ff03b4e5a5dbf6ea1a781258ebdc08bd.js": "/carousel/precache-manifest.ff03b4e5a5dbf6ea1a781258ebdc08bd.js",
+    "precache-manifest.424228cf57d99c01f5a73a0223859a4a.js": "/carousel/precache-manifest.424228cf57d99c01f5a73a0223859a4a.js",
     "service-worker.js": "/carousel/service-worker.js",
-    "static/js/2.9eea2a5f.chunk.js.LICENSE": "/carousel/static/js/2.9eea2a5f.chunk.js.LICENSE",
+    "static/js/2.4aab933c.chunk.js.LICENSE": "/carousel/static/js/2.4aab933c.chunk.js.LICENSE",
     "static/media/1.jpg": "/carousel/static/media/1.43e4c49e.jpg",
     "static/media/1.webp": "/carousel/static/media/1.67ed8971.webp",
     "static/media/10.webp": "/carousel/static/media/10.0191b0ab.webp",
@@ -43,7 +43,7 @@
   },
   "entrypoints": [
     "static/js/runtime-main.4cdf4280.js",
-    "static/js/2.9eea2a5f.chunk.js",
+    "static/js/2.4aab933c.chunk.js",
     "static/js/main.904e711e.chunk.js"
   ]
 }
