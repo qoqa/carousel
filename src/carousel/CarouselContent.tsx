@@ -95,6 +95,11 @@ export function CarouselContent({
           animateHeight={supportAnimatedHeight}
           overscanSlideAfter={1}
           overscanSlideBefore={1}
+          action={({ updateHeight }: any) => {
+            requestAnimationFrame(() => {
+              updateHeight();
+            });
+          }}
         />
         {hasMultipleSlides && (
           <CarouselControls
