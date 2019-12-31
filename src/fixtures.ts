@@ -48,7 +48,7 @@ export const slides: CarouselImageType[] = [
     srcWebp: image2Webp,
     srcPreview: image2Small,
     alt: 'Image 2',
-    width: 3886,
+    width: 3866,
     height: 2426,
   },
   {
@@ -88,7 +88,7 @@ export const slides: CarouselImageType[] = [
     srcWebp: image7Webp,
     srcPreview: image7Small,
     alt: 'Image 7',
-    width: 4949,
+    width: 4940,
     height: 3280,
   },
   {
