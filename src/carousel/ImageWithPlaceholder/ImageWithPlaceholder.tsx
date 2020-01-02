@@ -4,7 +4,6 @@ import Placeholder from './Placeholder';
 
 const useStyle = makeStyles({
   root: {
-    height: '100%',
     // Remove the blank line at the bottom of the container.
     lineHeight: 0,
     // This is done because we want to the image component to behave like an `img` tag.
