@@ -88,19 +88,22 @@ export function CarouselContent({
         </IconButton>
       </div>
       <div className={classes.carouselContainer}>
-        <VirualizedSwipableViews
-          onChangeIndex={handleChangeIndex}
-          index={slideIndex}
-          slideRenderer={slideRenderer}
-          animateHeight={supportAnimatedHeight}
-          overscanSlideAfter={1}
-          overscanSlideBefore={1}
-          action={({ updateHeight }: any) => {
-            requestAnimationFrame(() => {
-              updateHeight();
-            });
-          }}
-        />
+        {hasMultipleSlides && (
+          <VirualizedSwipableViews
+            onChangeIndex={handleChangeIndex}
+            index={slideIndex}
+            slideRenderer={slideRenderer}
+            animateHeight={supportAnimatedHeight}
+            overscanSlideAfter={1}
+            overscanSlideBefore={1}
+            action={({ updateHeight }: any) => {
+              requestAnimationFrame(() => {
+                updateHeight();
+              });
+            }}
+          />
+        )}
+        {!hasMultipleSlides && <CarouselSlide {...slides[0]} />}
         {hasMultipleSlides && (
           <CarouselControls
             goToPreviousSlide={goToPreviousSlide}
