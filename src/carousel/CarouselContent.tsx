@@ -1,17 +1,12 @@
 import React from 'react';
 import { IconButton, makeStyles } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
-// The types for react-swipeable-views are not up to date.
-// @ts-ignore
-import { bindKeyboard, virtualize } from 'react-swipeable-views-utils';
-import SwipeableViews from 'react-swipeable-views';
 import { useSlideIndex } from './useSlideIndex';
-import { actualSlideIndex } from './actualSlideIndex';
 import { CarouselSlide } from './CarouselSlide';
 import { CarouselControls } from './CarouselControls';
 import { CarouselType } from './Carousel';
 import { useCarouselContext } from './CarouselContext';
-import { supportsObjectFit } from './browserUtils';
+import { SwipeableViewsContainer } from './SwipeableViewsContainer';
 
 const useStyles = makeStyles({
   carouselRoot: {
@@ -37,12 +32,6 @@ const useStyles = makeStyles({
     margin: '1rem',
   },
 });
-
-const VirualizedSwipableViews = bindKeyboard(virtualize(SwipeableViews));
-
-// Depending on the browser, we don't want to animate the height.
-// Typically IE11 doesn't support this.
-const supportAnimatedHeight = supportsObjectFit();
 
 export function CarouselContent({
   slides,
@@ -72,13 +61,6 @@ export function CarouselContent({
     slidesCount
   );
 
-  const slideRenderer = ({ index, key }: any) => {
-    // Translate the virtual index to an actual slide to display.
-    const slideToDisplay = actualSlideIndex(index, slides.length);
-    const slide = slides[slideToDisplay];
-    return <CarouselSlide key={key} {...slide} />;
-  };
-
   return (
     <div className={classes.carouselRoot}>
       <div className={classes.carouselHeader}>
@@ -88,22 +70,12 @@ export function CarouselContent({
         </IconButton>
       </div>
       <div className={classes.carouselContainer}>
-        {hasMultipleSlides && (
-          <VirualizedSwipableViews
-            onChangeIndex={handleChangeIndex}
-            index={slideIndex}
-            slideRenderer={slideRenderer}
-            animateHeight={supportAnimatedHeight}
-            overscanSlideAfter={1}
-            overscanSlideBefore={1}
-            action={({ updateHeight }: any) => {
-              requestAnimationFrame(() => {
-                updateHeight();
-              });
-            }}
-          />
-        )}
-        {!hasMultipleSlides && <CarouselSlide {...slides[0]} />}
+        <SwipeableViewsContainer
+          handleChangeIndex={handleChangeIndex}
+          currentIndex={slideIndex}
+          ViewComponent={CarouselSlide}
+          viewProps={slides}
+        />
         {hasMultipleSlides && (
           <CarouselControls
             goToPreviousSlide={goToPreviousSlide}
