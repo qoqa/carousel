@@ -20,8 +20,6 @@ const useStyle = makeStyles({
     width: '100%',
     height: 'auto',
     cursor: 'zoom-in',
-    // Fix a display issue with IE11
-    overflow: 'hidden',
   },
 });
 

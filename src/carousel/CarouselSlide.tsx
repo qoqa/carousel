@@ -19,6 +19,8 @@ const useStyles = makeStyles(theme => ({
   imgContainer: {
     // Horizontal align
     margin: '0 auto',
+    // Fix a display issue with IE11
+    overflow: 'hidden',
   },
   img: {
     width: '100%',
