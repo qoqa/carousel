@@ -1,10 +1,12 @@
 import React from 'react';
 import { actualSlideIndex } from './actualSlideIndex';
-// The types for react-swipeable-views are not up to date.
+import { supportsObjectFit } from './browserUtils';
+// The types for react-swipeable-views-utils are not up to date.
 // @ts-ignore
 import { bindKeyboard, virtualize } from 'react-swipeable-views-utils';
+// The types for react-swipeable-views are not up to date.
+// @ts-ignore
 import SwipeableViews from 'react-swipeable-views';
-import { supportsObjectFit } from './browserUtils';
 
 const VirualizedSwipableViews = bindKeyboard(virtualize(SwipeableViews));
 
