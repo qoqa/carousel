@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.js": "/carousel/static/js/main.af6ee6ea.chunk.js",
-    "main.js.map": "/carousel/static/js/main.af6ee6ea.chunk.js.map",
-    "runtime-main.js": "/carousel/static/js/runtime-main.4cdf4280.js",
-    "runtime-main.js.map": "/carousel/static/js/runtime-main.4cdf4280.js.map",
-    "static/js/2.05972b1e.chunk.js": "/carousel/static/js/2.05972b1e.chunk.js",
-    "static/js/2.05972b1e.chunk.js.map": "/carousel/static/js/2.05972b1e.chunk.js.map",
+    "main.js": "/carousel/static/js/main.de3414e1.chunk.js",
+    "main.js.map": "/carousel/static/js/main.de3414e1.chunk.js.map",
+    "runtime-main.js": "/carousel/static/js/runtime-main.e2f40283.js",
+    "runtime-main.js.map": "/carousel/static/js/runtime-main.e2f40283.js.map",
+    "static/js/2.216a469e.chunk.js": "/carousel/static/js/2.216a469e.chunk.js",
+    "static/js/2.216a469e.chunk.js.map": "/carousel/static/js/2.216a469e.chunk.js.map",
     "index.html": "/carousel/index.html",
-    "precache-manifest.2afb088d657dfc67d4d331571248fb07.js": "/carousel/precache-manifest.2afb088d657dfc67d4d331571248fb07.js",
+    "precache-manifest.e5a4f57cc860215974d1fb65f9826d47.js": "/carousel/precache-manifest.e5a4f57cc860215974d1fb65f9826d47.js",
     "service-worker.js": "/carousel/service-worker.js",
-    "static/js/2.05972b1e.chunk.js.LICENSE": "/carousel/static/js/2.05972b1e.chunk.js.LICENSE",
+    "static/js/2.216a469e.chunk.js.LICENSE": "/carousel/static/js/2.216a469e.chunk.js.LICENSE",
     "static/media/1.jpg": "/carousel/static/media/1.43e4c49e.jpg",
     "static/media/1.webp": "/carousel/static/media/1.67ed8971.webp",
     "static/media/10.webp": "/carousel/static/media/10.0191b0ab.webp",
@@ -42,8 +42,8 @@
     "static/media/9_small.jpg": "/carousel/static/media/9_small.4bd2bb57.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.4cdf4280.js",
-    "static/js/2.05972b1e.chunk.js",
-    "static/js/main.af6ee6ea.chunk.js"
+    "static/js/runtime-main.e2f40283.js",
+    "static/js/2.216a469e.chunk.js",
+    "static/js/main.de3414e1.chunk.js"
   ]
 }
