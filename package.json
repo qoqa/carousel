@@ -1,6 +1,6 @@
 {
   "name": "@pierre-do/carousel",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "main": "index.js",
   "module": "es/index.js",
   "types": "index.d.ts",
