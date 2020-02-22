@@ -1,18 +1,19 @@
-name: Publish Package
+name: Lint
 
-on:
-  release:
-    types: [created, updated]
+on: [push]
 
 jobs:
-  publish:
+  lint:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
     steps:
       - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
         with:
-          node-version: 12
-          registry-url: https://npm.pkg.github.com/
+          node-version: ${{ matrix.node-version }}
       - name: Get yarn cache
         id: yarn-cache
         run: echo "::set-output name=dir::$(yarn cache dir)"
@@ -24,12 +25,12 @@ jobs:
             ${{ runner.os }}-yarn-
       - name: Install
         run: |
-          yarn install --pure-lockfile
+          yarn install
         env:
           CI: true
-      - name: Release
+          NODE_AUTH_TOKEN: ${{secrets.GPR_GITHUB_TOKEN}}
+      - name:  Build
         run: |
-          yarn release
+          yarn lint
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.githubToken }}
-
+          CI: true

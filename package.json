@@ -1,8 +1,9 @@
 {
   "name": "@pierre-do/carousel",
   "version": "0.1.3",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "index.js",
+  "module": "es/index.js",
+  "types": "index.d.ts",
   "license": "MIT",
   "homepage": "https://pierre-do.github.io/carousel/",
   "files": [
@@ -11,15 +12,19 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
+  "peerDependencies": {
+    "@material-ui/core": "^4",
+    "@material-ui/icons": "^4",
+    "react": "^16",
+    "react-dom": "^16"
+  },
   "dependencies": {
-    "@material-ui/core": "4.9.3",
-    "@material-ui/icons": "4.9.1",
-    "react": "16.12.0",
-    "react-dom": "16.12.0",
     "react-swipeable-views": "0.13.9",
     "react-swipeable-views-utils": "0.13.9"
   },
   "devDependencies": {
+    "@material-ui/core": "4.9.3",
+    "@material-ui/icons": "4.9.1",
     "@testing-library/jest-dom": "5.1.1",
     "@testing-library/react": "9.4.0",
     "@testing-library/user-event": "10.0.0",
@@ -32,17 +37,25 @@
     "eslint-plugin-prettier": "3.1.2",
     "husky": "4.2.3",
     "lint-staged": "10.0.7",
+    "npm-run-all": "4.1.5",
     "prettier": "1.19.1",
+    "react": "16.12.0",
+    "react-dom": "16.12.0",
     "react-scripts": "3.4.0",
+    "rollup": "1.31.1",
+    "rollup-plugin-typescript2": "0.26.0",
     "typescript": "3.8.2"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "build:package": "npx tsc --build src/carousel/tsconfig.json",
+    "build": "SKIP_PREFLIGHT_CHECK=true react-scripts build",
+    "lint": "eslint --ext js,ts,tsx src --max-warnings=0",
+    "build:package": "rollup -c && node copy-package-json.js",
     "test": "react-scripts test --coverage",
     "deploy": "npx gh-pages -d build",
-    "format": "prettier --config ./.prettierrc --write \"{,!(build|node_modules|coverage|dist)/**/,.}/*{.ts,.tsx,.js,.jsx,.css,.scss,.md,.html,.json}\""
+    "format": "yarn lint --fix",
+    "release": "npm-run-all build:package && cd dist && npm publish",
+    "validate": "CI=true npm-run-all lint test build build:package"
   },
   "eslintConfig": {
     "extends": [

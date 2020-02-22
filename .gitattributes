@@ -1,0 +1,16 @@
+# Forces Git to normalize line endings to LF on checkin and prevents conversion to CRLF when the file is checked out
+* text=auto
+* text eol=lf
+# Specify binary files (instead git thinks it's text)
+*.eot binary
+*.gif binary
+*.gpg binary
+*.jpg binary
+*.jpeg binary
+*.pdf binary
+*.png binary
+*.svg binary
+*.ttf binary
+*.webp binary
+*.woff binary
+*.woff2 binary
