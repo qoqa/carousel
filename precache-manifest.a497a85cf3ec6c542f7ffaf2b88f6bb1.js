@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a84a4f7fcefb5e542db81e3f8f730cae",
+    "revision": "989ce0e527fd3542815a4d788f3f5b86",
     "url": "/carousel/index.html"
   },
   {
-    "revision": "13ffc32cc127fc226483",
-    "url": "/carousel/static/js/2.694918de.chunk.js"
+    "revision": "2d328d1840b9df9ccb37",
+    "url": "/carousel/static/js/2.e8ba9512.chunk.js"
   },
   {
     "revision": "a5f2d10ed37ea21cf8977c2b43b9626e",
-    "url": "/carousel/static/js/2.694918de.chunk.js.LICENSE.txt"
+    "url": "/carousel/static/js/2.e8ba9512.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "8545d167edaf909fcc7b",
-    "url": "/carousel/static/js/main.eddbdc1d.chunk.js"
+    "revision": "7c5012ce5a11e3a9f2d9",
+    "url": "/carousel/static/js/main.5adb6494.chunk.js"
   },
   {
     "revision": "3531df13c549080e84e5",
