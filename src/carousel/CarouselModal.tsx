@@ -10,10 +10,8 @@ const useStyles = makeStyles(theme => ({
     },
   },
   modalContent: {
-    // Vertical align
     position: 'relative',
-    top: '50%',
-    transform: 'translateY(-50%)',
+    height: '100%',
     // On desktop the modal takes the full height, and as much with as it can.
     [theme.breakpoints.up('md')]: {
       marginLeft: theme.spacing(2),
