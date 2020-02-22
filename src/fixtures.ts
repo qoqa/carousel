@@ -126,6 +126,6 @@ export function getDefaultTranslations(
   return {
     nextButton: `Go to slide ${nextSlideNumber}`,
     previousButton: `Go to slide ${previousSlideNumber}`,
-    status: `Slide ${currentSlideNumber} over ${slidesCount}`,
+    status: `${currentSlideNumber} over ${slidesCount}`,
   };
 }

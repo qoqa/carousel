@@ -58,28 +58,28 @@ describe('Carousel', () => {
 
   it('should go to the next slide if the next button is pressed', () => {
     const { getByText, getByAltText } = render(<TestCarousel />);
-    expect(getByText('Slide 1 over 10')).toBeInTheDocument();
+    expect(getByText('1 over 10')).toBeInTheDocument();
 
     getByText('Go to slide 2').click();
 
     const secondImage = getByAltText(slides[1].alt);
     expect(secondImage).toBeInTheDocument();
-    expect(getByText('Slide 2 over 10')).toBeInTheDocument();
+    expect(getByText('2 over 10')).toBeInTheDocument();
   });
 
   it('should loop back to the last slide if the back button is pressed', () => {
     const { getByText, getByAltText } = render(<TestCarousel />);
-    expect(getByText('Slide 1 over 10')).toBeInTheDocument();
+    expect(getByText('1 over 10')).toBeInTheDocument();
 
     getByText('Go to slide 10').click();
 
     const secondImage = getByAltText(slides[9].alt);
     expect(secondImage).toBeInTheDocument();
-    expect(getByText('Slide 10 over 10')).toBeInTheDocument();
+    expect(getByText('10 over 10')).toBeInTheDocument();
   });
 
   it('should not display the controls if there is only one slide', () => {
-    const CarouselWithOneSlide = () => (
+    const CarouselWithOne = () => (
       <Carousel
         isInitiallyOpen
         getTranslations={getDefaultTranslations}
@@ -87,8 +87,8 @@ describe('Carousel', () => {
       />
     );
 
-    const { queryByText } = render(<CarouselWithOneSlide />);
-    expect(queryByText('Slide 1 over 10')).not.toBeInTheDocument();
+    const { queryByText } = render(<CarouselWithOne />);
+    expect(queryByText('1 over 10')).not.toBeInTheDocument();
   });
 
   it('should open the carousel at the right slide', () => {
@@ -97,7 +97,7 @@ describe('Carousel', () => {
     );
 
     getByText('Open').click();
-    expect(getByText('Slide 3 over 10')).toBeInTheDocument();
+    expect(getByText('3 over 10')).toBeInTheDocument();
   });
 
   it('should close the carousel', async () => {
@@ -106,12 +106,10 @@ describe('Carousel', () => {
     );
 
     getByText('Open').click();
-    expect(queryByText('Slide 1 over 10')).toBeInTheDocument();
+    expect(queryByText('1 over 10')).toBeInTheDocument();
 
     getByText('Close').click();
     // Async test to work around the animation delay of the modal
-    await wait(() =>
-      expect(queryByText('Slide 1 over 10')).not.toBeInTheDocument()
-    );
+    await wait(() => expect(queryByText('1 over 10')).not.toBeInTheDocument());
   });
 });
