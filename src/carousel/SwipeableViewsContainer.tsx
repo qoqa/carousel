@@ -1,18 +1,14 @@
 import React from 'react';
 import { actualSlideIndex } from './actualSlideIndex';
-import { supportsObjectFit } from './browserUtils';
 // The types for react-swipeable-views-utils are not up to date.
 // @ts-ignore
 import { bindKeyboard, virtualize } from 'react-swipeable-views-utils';
 // The types for react-swipeable-views are not up to date.
 // @ts-ignore
 import SwipeableViews from 'react-swipeable-views';
+import { makeStyles } from '@material-ui/core/styles';
 
 const VirualizedSwipableViews = bindKeyboard(virtualize(SwipeableViews));
-
-// Depending on the browser, we don't want to animate the height.
-// Typically IE11 doesn't support this.
-const supportAnimatedHeight = supportsObjectFit();
 
 function viewRendererFactory(viewProps: object[], ViewComponent: any) {
   return function viewRenderer({ index, key }: any) {
@@ -30,6 +26,12 @@ type SwipeableViewsContainerProps = {
   currentIndex: number;
 };
 
+const useStyles = makeStyles(() => ({
+  slide: {
+    alignSelf: 'center',
+  },
+}));
+
 export function SwipeableViewsContainer({
   viewProps,
   ViewComponent,
@@ -37,6 +39,7 @@ export function SwipeableViewsContainer({
   currentIndex,
 }: SwipeableViewsContainerProps) {
   const hasMultipleViews = viewProps.length > 1;
+  const classes = useStyles();
 
   // No need to have a swipeable view if there is only one view
   if (!hasMultipleViews) {
@@ -48,7 +51,6 @@ export function SwipeableViewsContainer({
       onChangeIndex={handleChangeIndex}
       index={currentIndex}
       slideRenderer={viewRendererFactory(viewProps, ViewComponent)}
-      animateHeight={supportAnimatedHeight}
       overscanSlideAfter={1}
       overscanSlideBefore={1}
       action={({ updateHeight }: any) => {
@@ -56,6 +58,7 @@ export function SwipeableViewsContainer({
           updateHeight();
         });
       }}
+      slideClassName={classes.slide}
     />
   );
 }

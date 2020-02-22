@@ -1,8 +1,8 @@
 import React from 'react';
 import {
   Fab,
+  Fade,
   makeStyles,
-  Slide,
   useMediaQuery,
   useTheme,
 } from '@material-ui/core';
@@ -62,18 +62,18 @@ export function CarouselControls({
 
   return (
     <div className={classes.arrowsContainer}>
-      <Slide in={true} direction="right">
+      <Fade in={true}>
         <Fab className={classes.arrow} onClick={goToPreviousSlide}>
           <span className={classes.srOnly}>{translations.previousButton}</span>
           <ArrowBackIcon aria-hidden />
         </Fab>
-      </Slide>
-      <Slide in={true} direction="left">
+      </Fade>
+      <Fade in={true}>
         <Fab className={classes.arrow} onClick={goToNextSlide}>
           <span className={classes.srOnly}>{translations.nextButton}</span>
           <ArrowForwardIcon aria-hidden />
         </Fab>
-      </Slide>
+      </Fade>
     </div>
   );
 }

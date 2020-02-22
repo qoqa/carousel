@@ -1,5 +1,5 @@
 import React from 'react';
-import { Backdrop, makeStyles, Modal, Paper } from '@material-ui/core';
+import { Dialog, Fade, makeStyles } from '@material-ui/core';
 import { useCarouselContext } from './CarouselContext';
 
 const useStyles = makeStyles(theme => ({
@@ -37,15 +37,18 @@ export function CarouselModal({
   const open = isInitiallyOpen || isOpen;
 
   return (
-    <Modal
+    <Dialog
+      aria-labelledby="modal-title"
       open={open}
       onClose={close}
-      BackdropComponent={Backdrop}
+      TransitionComponent={Fade}
+      fullWidth={true}
+      maxWidth="md"
+      fullScreen={true}
+      scroll="body"
       className={classes.modalRoot}
     >
-      <Paper elevation={2} className={classes.modalContent}>
-        {children}
-      </Paper>
-    </Modal>
+      <div className={classes.modalContent}>{children}</div>
+    </Dialog>
   );
 }

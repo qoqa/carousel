@@ -7,11 +7,15 @@ import { CarouselControls } from './CarouselControls';
 import { CarouselType } from './Carousel';
 import { useCarouselContext } from './CarouselContext';
 import { SwipeableViewsContainer } from './SwipeableViewsContainer';
+import { grey } from '@material-ui/core/colors';
 
 const useStyles = makeStyles({
   carouselRoot: {
     display: 'flex',
     flexDirection: 'column',
+    justifyContent: 'space-between',
+    height: '100vh',
+    backgroundColor: grey[800],
   },
   carouselContainer: {
     position: 'relative',
@@ -83,14 +87,14 @@ export function CarouselContent({
             translations={translations}
           />
         )}
-        <div
-          aria-live="polite"
-          role="status"
-          aria-atomic="true"
-          className={classes.carouselStatus}
-        >
-          {hasMultipleSlides && translations.status}
-        </div>
+      </div>
+      <div
+        aria-live="polite"
+        role="status"
+        aria-atomic="true"
+        className={classes.carouselStatus}
+      >
+        {hasMultipleSlides && translations.status}
       </div>
     </div>
   );
