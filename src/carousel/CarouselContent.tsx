@@ -7,7 +7,6 @@ import { CarouselControls } from './CarouselControls';
 import { CarouselType } from './Carousel';
 import { useCarouselContext } from './CarouselContext';
 import { SwipeableViewsContainer } from './SwipeableViewsContainer';
-import { grey } from '@material-ui/core/colors';
 
 const useStyles = makeStyles({
   carouselRoot: {
@@ -15,7 +14,6 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     justifyContent: 'space-between',
     height: '100vh',
-    backgroundColor: grey[800],
   },
   carouselContainer: {
     position: 'relative',
