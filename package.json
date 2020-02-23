@@ -57,22 +57,6 @@
     "release": "npm-run-all build:package && cd dist && npm publish",
     "validate": "CI=true npm-run-all lint test build build:package"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "plugin:prettier/recommended"
-    ],
-    "plugins": [
-      "prettier"
-    ],
-    "rules": {
-      "prettier/prettier": "warn",
-      "linebreak-style": [
-        "error",
-        "unix"
-      ]
-    }
-  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
