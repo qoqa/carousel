@@ -44,7 +44,7 @@
     "react-scripts": "3.4.0",
     "rollup": "1.32.0",
     "rollup-plugin-typescript2": "0.26.0",
-    "typescript": "3.8.2"
+    "typescript": "3.8.3"
   },
   "scripts": {
     "start": "react-scripts start",
