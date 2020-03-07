@@ -1,4 +1,5 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 
 type PlaceholderProps = {
   height: number;
@@ -6,6 +7,13 @@ type PlaceholderProps = {
   alt?: string;
   className?: string;
 };
+
+const useStyles = makeStyles(() => ({
+  img: {
+    background: 'black',
+    opacity: 0.125,
+  },
+}));
 
 function getInlineSVG(width: number, height: number): string {
   return `
@@ -25,9 +33,10 @@ function inlineBase64(value: string): string {
 }
 
 function Placeholder({ height, width, className }: PlaceholderProps) {
+  const classes = useStyles();
   return (
     <img
-      className={className}
+      className={`${className} ${classes.img}`}
       width={width}
       height={height}
       alt=""
