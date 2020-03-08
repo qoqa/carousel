@@ -8,10 +8,12 @@ const useStyle = makeStyles({
     lineHeight: 0,
     // This is done because we want to the image component to behave like an `img` tag.
     display: 'inline-block',
+    position: 'relative',
   },
   picture: {
     display: 'inline-block',
     transition: 'opacity 250ms',
+    lineHeight: 1,
   },
   pictureVisible: {
     opacity: 1,
@@ -20,9 +22,6 @@ const useStyle = makeStyles({
     opacity: 0,
     position: 'absolute',
     clip: 'rect(0, 0, 0, 0)',
-  },
-  loaderAnimation: {
-    position: 'absolute',
   },
 });
 
