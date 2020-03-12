@@ -1,6 +1,9 @@
 name: Validate Build
 
-on: [push]
+on:
+  push:
+    branches:
+      - 'master'
 
 jobs:
   lint:
