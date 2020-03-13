@@ -50,7 +50,7 @@
     "start": "react-scripts start",
     "build": "SKIP_PREFLIGHT_CHECK=true react-scripts build",
     "lint": "eslint --ext js,ts,tsx src --max-warnings=0",
-    "build:package": "rollup -c && node copy-package-json.js",
+    "build:package": "rollup -c && node copy-package-json.js && cp README.md dist",
     "test": "react-scripts test --coverage",
     "deploy": "npx gh-pages -d build",
     "format": "yarn lint --fix",
