@@ -2,7 +2,7 @@ import React from 'react';
 import { Dialog, Fade, makeStyles } from '@material-ui/core';
 import { useCarouselContext } from './CarouselContext';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   modalRoot: {
     '& > *:focus': {
       // The modal sets the focus on the Paper within, but it's quite ugly

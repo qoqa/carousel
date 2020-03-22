@@ -11,7 +11,7 @@ type CarouselSlideType = {
   height: number;
 };
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   slide: {
     display: 'flex',
     cursor: 'zoom-out',
