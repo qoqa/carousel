@@ -8,7 +8,7 @@ import {
 } from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
-import { CarouselTranslationsType } from './Carousel';
+import { CarouselTranslationsType } from './Carousel.type';
 
 const useStyles = makeStyles((theme) => ({
   arrowsContainer: {

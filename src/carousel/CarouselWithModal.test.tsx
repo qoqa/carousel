@@ -1,26 +1,27 @@
 import React from 'react';
 import { getDefaultTranslations, slides } from '../fixtures';
-import { Carousel } from './Carousel';
+import { CarouselWithModal } from './CarouselWithModal';
 import { render, act, fireEvent, waitFor } from '@testing-library/react';
 import { CarouselContextProvider, useCarouselContext } from './CarouselContext';
 
 const TestCarousel = () => {
   return (
-    <Carousel
-      getTranslations={getDefaultTranslations}
-      slides={slides}
-      title="Test Carousel"
-      isInitiallyOpen
-    />
+    <CarouselContextProvider slides={slides}>
+      <CarouselWithModal
+        getTranslations={getDefaultTranslations}
+        title="Test Carousel"
+        isInitiallyOpen
+      />
+    </CarouselContextProvider>
   );
 };
 
 const TestCarouselTrigger = ({ slideIndexToOpen }: any) => {
-  const { open, close } = useCarouselContext();
+  const { openAt, close } = useCarouselContext();
 
   return (
     <>
-      <button onClick={() => open(slideIndexToOpen)}>Open</button>
+      <button onClick={() => openAt(slideIndexToOpen)}>Open</button>
       <button onClick={() => close()}>Close</button>
     </>
   );
@@ -28,14 +29,14 @@ const TestCarouselTrigger = ({ slideIndexToOpen }: any) => {
 
 const TestCarouselWithTrigger = ({ slideIndexToOpen }: any) => {
   return (
-    <CarouselContextProvider>
+    <CarouselContextProvider slides={slides}>
       <TestCarouselTrigger slideIndexToOpen={slideIndexToOpen} />
-      <Carousel getTranslations={getDefaultTranslations} slides={slides} />
+      <CarouselWithModal getTranslations={getDefaultTranslations} />
     </CarouselContextProvider>
   );
 };
 
-describe('Carousel', () => {
+describe('CarouselWithModal', () => {
   it('should display the title', () => {
     const { getByText } = render(<TestCarousel />);
     expect(getByText('Test Carousel')).toBeInTheDocument();
@@ -80,11 +81,12 @@ describe('Carousel', () => {
 
   it('should not display the controls if there is only one slide', () => {
     const CarouselWithOne = () => (
-      <Carousel
-        isInitiallyOpen
-        getTranslations={getDefaultTranslations}
-        slides={[slides[0]]}
-      />
+      <CarouselContextProvider slides={[slides[0]]}>
+        <CarouselWithModal
+          isInitiallyOpen
+          getTranslations={getDefaultTranslations}
+        />
+      </CarouselContextProvider>
     );
 
     const { queryByText } = render(<CarouselWithOne />);

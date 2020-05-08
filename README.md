@@ -26,7 +26,7 @@ You can implement a very simple gallery with clickable images as suggeted below.
 ```typescript jsx
 import React from 'react';
 import {
-  Carousel,
+  CarouselWithModal,
   CarouselContextProvider,
   CarouselImageType,
   ImageWithPlaceholder,
@@ -64,11 +64,11 @@ function getDefaultTranslations(
 
 function ClickableImage({ src, srcPreview, alt, index, width, height }: any) {
   const classes = useStyle();
-  const { open } = useCarouselContext();
+  const { openAt } = useCarouselContext();
 
   const handleClick = (e: any) => {
     e.preventDefault();
-    open(index);
+    openAt(index);
   };
 
   return (
@@ -94,7 +94,7 @@ export function Gallery({ slides, title }: GalleryProps) {
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
 
   return (
-    <CarouselContextProvider>
+    <CarouselContextProvider slides={slides}>
       <h2>{title}</h2>
       <GridList cols={isMobile ? 1 : 3}>
         {slides.map((slide, index) => (
@@ -103,9 +103,8 @@ export function Gallery({ slides, title }: GalleryProps) {
           </GridListTile>
         ))}
       </GridList>
-      <Carousel
+      <CarouselWithModal
         getTranslations={getDefaultTranslations}
-        slides={slides}
         title={title}
       />
     </CarouselContextProvider>

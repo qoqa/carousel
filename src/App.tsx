@@ -6,8 +6,9 @@ import {
   ThemeProvider,
 } from '@material-ui/core';
 import { Gallery } from './Gallery';
-import { slides } from './fixtures';
+import { getDefaultTranslations, slides } from './fixtures';
 import useDarkMode from './useDarkMode';
+import { Carousel, CarouselContextProvider } from './carousel';
 
 export const lightTheme = createMuiTheme({
   palette: {
@@ -27,12 +28,16 @@ const App: React.FC = () => {
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
       <CssBaseline />
       <Container>
-        <h1>Galleries with Carousel</h1>
+        <h1>Galleries with Carousel in a modal</h1>
         <p>Click on one if the image below to open the carousel.</p>
         <Gallery slides={slides} title="My Gallery" />
         <Gallery slides={[slides[8]]} title="Gallery with one image" />
         <h2>Gallery with no title</h2>
         <Gallery slides={[slides[7]]} />
+        <h1>Carousel in the page</h1>
+        <CarouselContextProvider slides={slides}>
+          <Carousel getTranslations={getDefaultTranslations} />
+        </CarouselContextProvider>
       </Container>
     </ThemeProvider>
   );

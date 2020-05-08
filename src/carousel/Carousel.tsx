@@ -1,38 +1,56 @@
 import React from 'react';
-import { CarouselModal } from './CarouselModal';
-import { CarouselContent } from './CarouselContent';
+import { makeStyles } from '@material-ui/core';
+import { CarouselSlide } from './CarouselSlide';
+import { CarouselControls } from './CarouselControls';
+import { CarouselType } from './Carousel.type';
+import { useCarouselContext } from './CarouselContext';
+import { SwipeableViewsContainer } from './SwipeableViewsContainer';
 
-export type CarouselTranslationsType = {
-  nextButton: string;
-  previousButton: string;
-  status: string;
-};
+const useStyles = makeStyles({
+  carouselContainer: {
+    position: 'relative',
+    lineHeight: 0,
+  },
+});
 
-export type CarouselImageType = {
-  src: string;
-  srcPreview: string;
-  srcWebp?: string;
-  alt: string;
-  width: number;
-  height: number;
-};
+export function Carousel({ getTranslations }: CarouselType) {
+  const { carouselContainer } = useStyles();
+  const {
+    slidesCount,
+    slides,
+    goToPreviousSlide,
+    goToNextSlide,
+    handleChangeIndex,
+    currentSlideNumber,
+    previousSlideNumber,
+    nextSlideNumber,
+    slideIndex,
+  } = useCarouselContext();
 
-export type CarouselType = {
-  slides: CarouselImageType[];
-  title?: string;
-  isInitiallyOpen?: boolean;
-  getTranslations: (
-    currentSlideNumber: number,
-    nextSlideNumber: number,
-    previousSlideNumber: number,
-    slidesCount: number
-  ) => CarouselTranslationsType;
-};
+  const translations = getTranslations(
+    currentSlideNumber,
+    nextSlideNumber,
+    previousSlideNumber,
+    slidesCount
+  );
 
-export function Carousel(props: CarouselType) {
+  const hasMultipleSlides = slidesCount > 1;
+
   return (
-    <CarouselModal isInitiallyOpen={props.isInitiallyOpen}>
-      <CarouselContent {...props} />
-    </CarouselModal>
+    <div className={carouselContainer}>
+      <SwipeableViewsContainer
+        handleChangeIndex={handleChangeIndex}
+        currentIndex={slideIndex}
+        ViewComponent={CarouselSlide}
+        viewProps={slides}
+      />
+      {hasMultipleSlides && (
+        <CarouselControls
+          goToPreviousSlide={goToPreviousSlide}
+          goToNextSlide={goToNextSlide}
+          translations={translations}
+        />
+      )}
+    </div>
   );
 }

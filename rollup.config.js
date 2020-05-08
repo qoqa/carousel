@@ -19,7 +19,7 @@ export default {
   ],
   plugins: [
     typescript({
-      tsconfig: 'src/carousel/tsconfig.json',
+      tsconfig: 'src/carousel/tsconfig-build.json',
     }),
   ],
 };
