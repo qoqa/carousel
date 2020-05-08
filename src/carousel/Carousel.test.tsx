@@ -1,7 +1,7 @@
 import React from 'react';
 import { getDefaultTranslations, slides } from '../fixtures';
 import { Carousel } from './Carousel';
-import { render, wait, act, fireEvent } from '@testing-library/react';
+import { render, act, fireEvent, waitFor } from '@testing-library/react';
 import { CarouselContextProvider, useCarouselContext } from './CarouselContext';
 
 const TestCarousel = () => {
@@ -51,7 +51,7 @@ describe('Carousel', () => {
       fireEvent.load(getByAltText(imageAltText));
     });
 
-    await wait(() => {
+    await waitFor(() => {
       expect(queryByAltText(imageAltText)).toBeVisible();
     });
   });
@@ -110,6 +110,8 @@ describe('Carousel', () => {
 
     getByText('Close').click();
     // Async test to work around the animation delay of the modal
-    await wait(() => expect(queryByText('1 over 10')).not.toBeInTheDocument());
+    await waitFor(() =>
+      expect(queryByText('1 over 10')).not.toBeInTheDocument()
+    );
   });
 });

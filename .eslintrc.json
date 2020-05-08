@@ -1,8 +1,15 @@
 {
-  "extends": ["react-app", "plugin:prettier/recommended"],
-  "plugins": ["prettier"],
+  "extends": [
+    "react-app",
+    "plugin:prettier/recommended",
+    "plugin:testing-library/recommended",
+    "plugin:jest-dom/recommended",
+    "plugin:testing-library/react"
+  ],
+  "plugins": ["prettier", "jest-dom", "testing-library"],
   "rules": {
     "prettier/prettier": "warn",
-    "linebreak-style": ["error", "unix"]
+    "linebreak-style": ["error", "unix"],
+    "testing-library/prefer-wait-for": "error"
   }
 }
