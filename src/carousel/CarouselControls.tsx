@@ -3,6 +3,7 @@ import {
   Fab,
   Fade,
   makeStyles,
+  Typography,
   useMediaQuery,
   useTheme,
 } from '@material-ui/core';
@@ -29,16 +30,6 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
   },
-  srOnly: {
-    position: 'absolute',
-    width: '1px',
-    height: '1px',
-    padding: 0,
-    margin: '-1px',
-    overflow: 'hidden',
-    clip: 'rect(0, 0, 0, 0)',
-    border: 0,
-  },
 }));
 
 type CarouselControlsProps = {
@@ -64,13 +55,15 @@ export function CarouselControls({
     <div className={classes.arrowsContainer}>
       <Fade in={true}>
         <Fab className={classes.arrow} onClick={goToPreviousSlide}>
-          <span className={classes.srOnly}>{translations.previousButton}</span>
+          <Typography variant="srOnly">
+            {translations.previousButton}
+          </Typography>
           <ArrowBackIcon aria-hidden />
         </Fab>
       </Fade>
       <Fade in={true}>
         <Fab className={classes.arrow} onClick={goToNextSlide}>
-          <span className={classes.srOnly}>{translations.nextButton}</span>
+          <Typography variant="srOnly">{translations.nextButton}</Typography>
           <ArrowForwardIcon aria-hidden />
         </Fab>
       </Fade>
