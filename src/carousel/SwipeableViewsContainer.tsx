@@ -52,7 +52,7 @@ export function SwipeableViewsContainer({
       index={currentIndex}
       slideRenderer={viewRendererFactory(viewProps, ViewComponent)}
       overscanSlideAfter={1}
-      overscanSlideBefore={0}
+      overscanSlideBefore={1}
       slideClassName={classes.slide}
     />
   );
