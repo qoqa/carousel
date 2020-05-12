@@ -8,7 +8,7 @@ import { bindKeyboard, virtualize } from 'react-swipeable-views-utils';
 import SwipeableViews from 'react-swipeable-views';
 import { makeStyles } from '@material-ui/core/styles';
 
-const VirualizedSwipableViews = bindKeyboard(virtualize(SwipeableViews));
+const VirtualizedSwipableViews = bindKeyboard(virtualize(SwipeableViews));
 
 function viewRendererFactory(viewProps: object[], ViewComponent: any) {
   return function viewRenderer({ index, key }: any) {
@@ -47,7 +47,7 @@ export function SwipeableViewsContainer({
   }
 
   return (
-    <VirualizedSwipableViews
+    <VirtualizedSwipableViews
       onChangeIndex={handleChangeIndex}
       index={currentIndex}
       slideRenderer={viewRendererFactory(viewProps, ViewComponent)}
