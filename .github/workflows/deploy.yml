@@ -38,6 +38,6 @@ jobs:
       - name: Deploy
         if: success()
         run: |
-          git config --global user.email "pierredominique.putallaz@gmail.com"
+          git config --global user.email "dev+github-chappie@qoqa.com"
           git config --global user.name "${{ github.actor }}"
           yarn deploy -x -r https://${{ github.actor }}:${{ secrets.githubToken }}@github.com/${{ github.repository }}.git
