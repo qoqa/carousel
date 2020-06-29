@@ -14,10 +14,10 @@ Based on Material-UI
 Add the following to your `.npmrc`
 
 ```text
-@pierre-do:registry=https://npm.pkg.github.com
+@qoqa:registry=https://npm.pkg.github.com
 ```
 
-Then run `yarn add @pierre-do/carousel`.
+Then run `yarn add @qoqa/carousel`.
 
 ## Example
 
@@ -32,7 +32,7 @@ import {
   ImageWithPlaceholder,
   useCarouselContext,
   CarouselTranslationsType,
-} from '@pierre-do/carousel';
+} from '@qoqa/carousel';
 import {
   GridList,
   GridListTile,

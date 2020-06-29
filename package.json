@@ -1,5 +1,5 @@
 {
-  "name": "@pierre-do/carousel",
+  "name": "@qoqa/carousel",
   "version": "0.2.0",
   "main": "index.js",
   "module": "es/index.js",
