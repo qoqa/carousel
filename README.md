@@ -7,7 +7,7 @@ Based on Material-UI
 
 ## Demo
 
-[https://pierre-do.github.io/carousel/](https://pierre-do.github.io/carousel/)
+[https://qoqa.github.io/carousel/](https://qoqa.github.io/carousel/)
 
 ## Getting Started
 

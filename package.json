@@ -5,7 +5,7 @@
   "module": "es/index.js",
   "types": "index.d.ts",
   "license": "MIT",
-  "homepage": "https://pierre-do.github.io/carousel/",
+  "homepage": "https://qoqa.github.io/carousel/",
   "files": [
     "dist"
   ],
