@@ -2,7 +2,6 @@ import React from 'react';
 import {
   CarouselWithModal,
   CarouselContextProvider,
-  CarouselImageType,
   ImageWithPlaceholder,
   useCarouselContext,
 } from './carousel';
@@ -13,7 +12,7 @@ import {
   useMediaQuery,
   useTheme,
 } from '@material-ui/core';
-import { getDefaultTranslations } from './fixtures';
+import { DemoSlideType, getDefaultTranslations } from './fixtures';
 
 const useStyle = makeStyles({
   img: {
@@ -23,7 +22,17 @@ const useStyle = makeStyles({
   },
 });
 
-function ClickableImage({ src, srcPreview, alt, index, width, height }: any) {
+interface ClickableImageProps extends DemoSlideType {
+  index: number;
+}
+function ClickableImage({
+  src,
+  srcPreview,
+  alt,
+  index,
+  width,
+  height,
+}: ClickableImageProps) {
   const classes = useStyle();
   const { openAt } = useCarouselContext();
 
@@ -46,7 +55,7 @@ function ClickableImage({ src, srcPreview, alt, index, width, height }: any) {
 }
 
 type GalleryProps = {
-  slides: CarouselImageType[];
+  slides: DemoSlideType[];
   title?: string;
 };
 

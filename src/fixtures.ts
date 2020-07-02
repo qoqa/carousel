@@ -34,7 +34,11 @@ import image8Small from './images/8_small.jpg';
 import image9Small from './images/9_small.jpg';
 import image10Small from './images/10_small.jpg';
 
-export const slides: CarouselImageType[] = [
+export interface DemoSlideType extends CarouselImageType {
+  srcPreview: string;
+}
+
+export const slides: DemoSlideType[] = [
   {
     src: image1,
     srcWebp: image1Webp,

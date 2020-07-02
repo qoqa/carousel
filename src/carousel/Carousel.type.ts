@@ -6,7 +6,6 @@ export type CarouselTranslationsType = {
 
 export type CarouselImageType = {
   src: string;
-  srcPreview: string;
   srcWebp?: string;
   alt: string;
   width: number;
