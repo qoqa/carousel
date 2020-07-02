@@ -11,6 +11,7 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     justifyContent: 'space-between',
     height: '100%',
+    cursor: 'zoom-out',
   },
   carouselHeader: {
     display: 'flex',
@@ -54,7 +55,7 @@ export function CarouselModalContent({ title, getTranslations }: CarouselType) {
   const hasMultipleSlides = slidesCount > 1;
 
   return (
-    <div className={carouselRoot}>
+    <div className={carouselRoot} onClick={close}>
       <div className={carouselHeader}>
         <h2 className={carouselTitle}>{title}</h2>
         <IconButton className={carouselCloseButton} onClick={close}>

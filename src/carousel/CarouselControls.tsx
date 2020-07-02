@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEvent, MouseEventHandler } from 'react';
 import {
   Fab,
   Fade,
@@ -32,6 +32,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+function stopEventPropagationFactory(fn: MouseEventHandler): MouseEventHandler {
+  return function (event: MouseEvent) {
+    event.stopPropagation();
+    fn(event);
+  };
+}
+
 type CarouselControlsProps = {
   goToPreviousSlide: () => void;
   goToNextSlide: () => void;
@@ -54,7 +61,10 @@ export function CarouselControls({
   return (
     <div className={classes.arrowsContainer}>
       <Fade in={true}>
-        <Fab className={classes.arrow} onClick={goToPreviousSlide}>
+        <Fab
+          className={classes.arrow}
+          onClick={stopEventPropagationFactory(goToPreviousSlide)}
+        >
           <Typography variant="srOnly">
             {translations.previousButton}
           </Typography>
@@ -62,7 +72,10 @@ export function CarouselControls({
         </Fab>
       </Fade>
       <Fade in={true}>
-        <Fab className={classes.arrow} onClick={goToNextSlide}>
+        <Fab
+          className={classes.arrow}
+          onClick={stopEventPropagationFactory(goToNextSlide)}
+        >
           <Typography variant="srOnly">{translations.nextButton}</Typography>
           <ArrowForwardIcon aria-hidden />
         </Fab>
