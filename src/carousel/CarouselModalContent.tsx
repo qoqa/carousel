@@ -5,7 +5,7 @@ import { CarouselType } from './Carousel.type';
 import { useCarouselContext } from './CarouselContext';
 import { Carousel } from './Carousel';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   carouselRoot: {
     display: 'flex',
     flexDirection: 'column',
@@ -18,16 +18,16 @@ const useStyles = makeStyles({
     justifyContent: 'space-between',
   },
   carouselTitle: {
-    margin: '1rem',
+    margin: theme.spacing(2),
   },
   carouselCloseButton: {
-    margin: '0.5rem',
+    margin: theme.spacing(2),
   },
   carouselStatus: {
     textAlign: 'end',
-    margin: '1rem',
+    margin: theme.spacing(2),
   },
-});
+}));
 
 export function CarouselModalContent({ title, getTranslations }: CarouselType) {
   const {
@@ -58,7 +58,11 @@ export function CarouselModalContent({ title, getTranslations }: CarouselType) {
     <div className={carouselRoot} onClick={close}>
       <div className={carouselHeader}>
         <h2 className={carouselTitle}>{title}</h2>
-        <IconButton className={carouselCloseButton} onClick={close}>
+        <IconButton
+          className={carouselCloseButton}
+          onClick={close}
+          disableRipple={true}
+        >
           <CloseIcon />
         </IconButton>
       </div>

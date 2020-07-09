@@ -12,11 +12,6 @@ const useStyles = makeStyles((theme) => ({
   modalContent: {
     position: 'relative',
     height: '100%',
-    // On desktop the modal takes the full height, and as much with as it can.
-    [theme.breakpoints.up('md')]: {
-      marginLeft: theme.spacing(2),
-      marginRight: theme.spacing(2),
-    },
   },
 }));
 
