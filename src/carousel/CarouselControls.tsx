@@ -1,15 +1,15 @@
 import React, { MouseEvent, MouseEventHandler } from 'react';
 import {
-  Fab,
   Fade,
+  IconButton,
   makeStyles,
-  Typography,
   useMediaQuery,
   useTheme,
 } from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import { CarouselTranslationsType } from './Carousel.type';
+import { fade } from '@material-ui/core/styles/colorManipulator';
 
 const useStyles = makeStyles((theme) => ({
   arrowsContainer: {
@@ -29,6 +29,10 @@ const useStyles = makeStyles((theme) => ({
     pointerEvents: 'all',
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
+    backgroundColor: fade(theme.palette.grey[900], 0.6),
+    '&:hover': {
+      backgroundColor: fade(theme.palette.grey[900], 0.8),
+    },
   },
 }));
 
@@ -61,24 +65,22 @@ export function CarouselControls({
   return (
     <div className={classes.arrowsContainer}>
       <Fade in={true}>
-        <Fab
+        <IconButton
           className={classes.arrow}
           onClick={stopEventPropagationFactory(goToPreviousSlide)}
+          title={translations.previousButton}
         >
-          <Typography variant="srOnly">
-            {translations.previousButton}
-          </Typography>
           <ArrowBackIcon aria-hidden />
-        </Fab>
+        </IconButton>
       </Fade>
       <Fade in={true}>
-        <Fab
+        <IconButton
           className={classes.arrow}
           onClick={stopEventPropagationFactory(goToNextSlide)}
+          title={translations.nextButton}
         >
-          <Typography variant="srOnly">{translations.nextButton}</Typography>
           <ArrowForwardIcon aria-hidden />
-        </Fab>
+        </IconButton>
       </Fade>
     </div>
   );

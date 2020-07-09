@@ -65,10 +65,10 @@ describe('CarouselWithModal', () => {
   });
 
   it('should go to the next slide if the next button is pressed', () => {
-    const { getByText, getByAltText } = render(<TestCarousel />);
+    const { getByText, getByAltText, getByTitle } = render(<TestCarousel />);
     expect(getByText('1 over 10')).toBeInTheDocument();
 
-    getByText('Go to slide 2').click();
+    getByTitle('Go to slide 2').click();
 
     const secondImage = getByAltText(slides[1].alt);
     expect(secondImage).toBeInTheDocument();
@@ -76,10 +76,10 @@ describe('CarouselWithModal', () => {
   });
 
   it('should loop back to the last slide if the back button is pressed', () => {
-    const { getByText, getByAltText } = render(<TestCarousel />);
+    const { getByText, getByAltText, getByTitle } = render(<TestCarousel />);
     expect(getByText('1 over 10')).toBeInTheDocument();
 
-    getByText('Go to slide 10').click();
+    getByTitle('Go to slide 10').click();
 
     const secondImage = getByAltText(slides[9].alt);
     expect(secondImage).toBeInTheDocument();
