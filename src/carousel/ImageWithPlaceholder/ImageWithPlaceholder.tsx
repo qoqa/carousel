@@ -41,7 +41,7 @@ export function ImageWithPlaceholder({
   alt,
   width,
   height,
-  className,
+  className = '',
   imgClassName,
 }: ImageWithLoaderProps) {
   const [isLoaded, setLoaded] = useState<boolean>(false);

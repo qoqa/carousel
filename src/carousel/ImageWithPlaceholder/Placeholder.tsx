@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import DelayedSpinner from './DelayedSpinner';
 
 type PlaceholderProps = {
   height: number;
@@ -9,9 +10,14 @@ type PlaceholderProps = {
 };
 
 const useStyles = makeStyles(() => ({
-  img: {
-    background: 'black',
-    opacity: 0.125,
+  root: {
+    position: 'relative',
+  },
+  spinner: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
   },
 }));
 
@@ -32,16 +38,21 @@ function inlineBase64(value: string): string {
   return `data:image/svg+xml;base64,${btoa(value)}`;
 }
 
-function Placeholder({ height, width, className }: PlaceholderProps) {
+function Placeholder({ height, width, className = '' }: PlaceholderProps) {
   const classes = useStyles();
   return (
-    <img
-      className={`${className} ${classes.img}`}
-      width={width}
-      height={height}
-      alt=""
-      src={inlineBase64(getInlineSVG(width, height))}
-    />
+    <div className={classes.root}>
+      <div className={classes.spinner}>
+        <DelayedSpinner />
+      </div>
+      <img
+        className={className}
+        width={width}
+        height={height}
+        alt=""
+        src={inlineBase64(getInlineSVG(width, height))}
+      />
+    </div>
   );
 }
 
