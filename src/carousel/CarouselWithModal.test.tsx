@@ -3,16 +3,21 @@ import { getDefaultTranslations, slides } from '../fixtures';
 import { CarouselWithModal } from './CarouselWithModal';
 import { render, act, fireEvent, waitFor } from '@testing-library/react';
 import { CarouselContextProvider, useCarouselContext } from './CarouselContext';
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
+
+const theme = createMuiTheme();
 
 const TestCarousel = () => {
   return (
-    <CarouselContextProvider slides={slides}>
-      <CarouselWithModal
-        getTranslations={getDefaultTranslations}
-        title="Test Carousel"
-        isInitiallyOpen
-      />
-    </CarouselContextProvider>
+    <MuiThemeProvider theme={theme}>
+      <CarouselContextProvider slides={slides}>
+        <CarouselWithModal
+          getTranslations={getDefaultTranslations}
+          title="Test Carousel"
+          isInitiallyOpen
+        />
+      </CarouselContextProvider>
+    </MuiThemeProvider>
   );
 };
 
@@ -29,10 +34,12 @@ const TestCarouselTrigger = ({ slideIndexToOpen }: any) => {
 
 const TestCarouselWithTrigger = ({ slideIndexToOpen }: any) => {
   return (
-    <CarouselContextProvider slides={slides}>
-      <TestCarouselTrigger slideIndexToOpen={slideIndexToOpen} />
-      <CarouselWithModal getTranslations={getDefaultTranslations} />
-    </CarouselContextProvider>
+    <MuiThemeProvider theme={theme}>
+      <CarouselContextProvider slides={slides}>
+        <TestCarouselTrigger slideIndexToOpen={slideIndexToOpen} />
+        <CarouselWithModal getTranslations={getDefaultTranslations} />
+      </CarouselContextProvider>
+    </MuiThemeProvider>
   );
 };
 
@@ -81,12 +88,14 @@ describe('CarouselWithModal', () => {
 
   it('should not display the controls if there is only one slide', () => {
     const CarouselWithOne = () => (
-      <CarouselContextProvider slides={[slides[0]]}>
-        <CarouselWithModal
-          isInitiallyOpen
-          getTranslations={getDefaultTranslations}
-        />
-      </CarouselContextProvider>
+      <MuiThemeProvider theme={theme}>
+        <CarouselContextProvider slides={[slides[0]]}>
+          <CarouselWithModal
+            isInitiallyOpen
+            getTranslations={getDefaultTranslations}
+          />
+        </CarouselContextProvider>
+      </MuiThemeProvider>
     );
 
     const { queryByText } = render(<CarouselWithOne />);
