@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "7d35618d8b9c7f0e8fd1c227abdfb815",
+    "revision": "5e2c0f0c3038ae55bf4d50c98cefb756",
     "url": "/carousel/index.html"
   },
   {
-    "revision": "b21864178709866aad48",
-    "url": "/carousel/static/js/2.7a23624c.chunk.js"
+    "revision": "a19795a02975ca191a0d",
+    "url": "/carousel/static/js/2.de670a8d.chunk.js"
   },
   {
-    "revision": "9bee961526e519d7c37a3b351b99d637",
-    "url": "/carousel/static/js/2.7a23624c.chunk.js.LICENSE.txt"
+    "revision": "5b8b49146ea7ff4abb4f22a9d28772fe",
+    "url": "/carousel/static/js/2.de670a8d.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "abaf5ec4857ab631a8e7",
-    "url": "/carousel/static/js/main.f024f542.chunk.js"
+    "revision": "c5f9ce5a4d0cb272625b",
+    "url": "/carousel/static/js/main.7b6e345f.chunk.js"
   },
   {
-    "revision": "c26a83ea9e9fd9fbef2f",
-    "url": "/carousel/static/js/runtime-main.c5f63a98.js"
+    "revision": "035dd56ed6c681a71fe3",
+    "url": "/carousel/static/js/runtime-main.93447168.js"
   },
   {
     "revision": "43e4c49eee0462d7b7e9edbe04553e81",
