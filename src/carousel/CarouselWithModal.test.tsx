@@ -34,12 +34,10 @@ const TestCarouselTrigger = ({ slideIndexToOpen }: any) => {
 
 const TestCarouselWithTrigger = ({ slideIndexToOpen }: any) => {
   return (
-    <MuiThemeProvider theme={theme}>
-      <CarouselContextProvider slides={slides}>
-        <TestCarouselTrigger slideIndexToOpen={slideIndexToOpen} />
-        <CarouselWithModal getTranslations={getDefaultTranslations} />
-      </CarouselContextProvider>
-    </MuiThemeProvider>
+    <CarouselContextProvider slides={slides}>
+      <TestCarouselTrigger slideIndexToOpen={slideIndexToOpen} />
+      <CarouselWithModal getTranslations={getDefaultTranslations} />
+    </CarouselContextProvider>
   );
 };
 
@@ -88,14 +86,12 @@ describe('CarouselWithModal', () => {
 
   it('should not display the controls if there is only one slide', () => {
     const CarouselWithOne = () => (
-      <MuiThemeProvider theme={theme}>
-        <CarouselContextProvider slides={[slides[0]]}>
-          <CarouselWithModal
-            isInitiallyOpen
-            getTranslations={getDefaultTranslations}
-          />
-        </CarouselContextProvider>
-      </MuiThemeProvider>
+      <CarouselContextProvider slides={[slides[0]]}>
+        <CarouselWithModal
+          isInitiallyOpen
+          getTranslations={getDefaultTranslations}
+        />
+      </CarouselContextProvider>
     );
 
     const { queryByText } = render(<CarouselWithOne />);

@@ -2,22 +2,28 @@ import React from 'react';
 import { CarouselModal } from './CarouselModal';
 import { CarouselModalContent } from './CarouselModalContent';
 import { CarouselType } from './Carousel.type';
-import { MuiThemeProvider } from '@material-ui/core';
-import createPalette from '@material-ui/core/styles/createPalette';
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
+import { useTheme as useThemeWithoutDefault } from '@material-ui/styles';
 
 // Better UX if the modal is always in dark theme
-const darkPalette = createPalette({
-  type: 'dark',
+const darkTheme = createMuiTheme({
+  palette: {
+    type: 'dark',
+  },
 });
 
 export function CarouselWithModal(props: CarouselType) {
+  const theme = useThemeWithoutDefault();
+
+  const defaultThemeOrExistingOne = theme
+    ? () => ({
+        ...theme,
+        palette: darkTheme.palette,
+      })
+    : darkTheme;
+
   return (
-    <MuiThemeProvider
-      theme={(defaultTheme) => ({
-        ...defaultTheme,
-        palette: darkPalette,
-      })}
-    >
+    <MuiThemeProvider theme={defaultThemeOrExistingOne}>
       <CarouselModal isInitiallyOpen={props.isInitiallyOpen}>
         <CarouselModalContent {...props} />
       </CarouselModal>
