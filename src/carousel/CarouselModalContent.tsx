@@ -12,6 +12,8 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     height: '100%',
     cursor: 'zoom-out',
+    backgroundColor: 'black',
+    color: 'white',
   },
   carouselHeader: {
     display: 'flex',
@@ -22,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
   carouselCloseButton: {
     margin: theme.spacing(2),
+    color: 'white',
   },
   carouselStatus: {
     textAlign: 'end',

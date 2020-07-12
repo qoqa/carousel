@@ -29,9 +29,10 @@ const useStyles = makeStyles((theme) => ({
     pointerEvents: 'all',
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
-    backgroundColor: fade(theme.palette.grey[900], 0.6),
+    color: 'white',
+    backgroundColor: fade('#000000', 0.6),
     '&:hover': {
-      backgroundColor: fade(theme.palette.grey[900], 0.8),
+      backgroundColor: fade('#000000', 0.8),
     },
   },
 }));

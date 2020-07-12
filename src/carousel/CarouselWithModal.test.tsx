@@ -3,20 +3,15 @@ import { getDefaultTranslations, slides } from '../fixtures';
 import { CarouselWithModal } from './CarouselWithModal';
 import { render, act, fireEvent, waitFor } from '@testing-library/react';
 import { CarouselContextProvider, useCarouselContext } from './CarouselContext';
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
-
-const theme = createMuiTheme();
 
 const TestCarousel = () => {
   return (
-    <MuiThemeProvider theme={theme}>
-      <CarouselContextProvider
-        slides={slides}
-        translationsFactory={getDefaultTranslations}
-      >
-        <CarouselWithModal title="Test Carousel" isInitiallyOpen />
-      </CarouselContextProvider>
-    </MuiThemeProvider>
+    <CarouselContextProvider
+      slides={slides}
+      translationsFactory={getDefaultTranslations}
+    >
+      <CarouselWithModal title="Test Carousel" isInitiallyOpen />
+    </CarouselContextProvider>
   );
 };
 

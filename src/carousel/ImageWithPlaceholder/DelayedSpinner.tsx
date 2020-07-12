@@ -4,11 +4,11 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const DEFAULT_DELAY_MS = 1000;
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   spinner: {
-    color: 'white',
+    color: theme.palette.grey[300],
   },
-});
+}));
 
 export default function DelayedSpinner() {
   const classes = useStyles();
@@ -26,7 +26,11 @@ export default function DelayedSpinner() {
 
   return (
     <Fade in={isVisible}>
-      <CircularProgress className={classes.spinner} />
+      <CircularProgress
+        data-testid={isVisible ? 'spinner' : ''}
+        className={classes.spinner}
+        size={24}
+      />
     </Fade>
   );
 }
