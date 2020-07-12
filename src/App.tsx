@@ -35,8 +35,11 @@ const App: React.FC = () => {
         <h2>Gallery with no title</h2>
         <Gallery slides={[slides[7]]} />
         <h1>Carousel in the page</h1>
-        <CarouselContextProvider slides={slides}>
-          <Carousel getTranslations={getDefaultTranslations} />
+        <CarouselContextProvider
+          slides={slides}
+          translationsFactory={getDefaultTranslations}
+        >
+          <Carousel />
         </CarouselContextProvider>
       </Container>
     </ThemeProvider>

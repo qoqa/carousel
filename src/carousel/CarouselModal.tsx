@@ -31,7 +31,7 @@ export function CarouselModal({
 
   return (
     <Dialog
-      aria-labelledby="modal-title"
+      aria-labelledby="carousel-modal-title"
       open={open}
       onClose={close}
       TransitionComponent={Fade}

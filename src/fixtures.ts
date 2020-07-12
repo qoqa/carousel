@@ -131,5 +131,6 @@ export function getDefaultTranslations(
     nextButton: `Go to slide ${nextSlideNumber}`,
     previousButton: `Go to slide ${previousSlideNumber}`,
     status: `${currentSlideNumber} over ${slidesCount}`,
+    close: 'Close (ESC)',
   };
 }

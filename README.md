@@ -59,6 +59,7 @@ function getDefaultTranslations(
     nextButton: `Go to slide ${nextSlideNumber}`,
     previousButton: `Go to slide ${previousSlideNumber}`,
     status: `Slide ${currentSlideNumber} over ${slidesCount}`,
+    close: 'Close',
   };
 }
 
@@ -94,7 +95,7 @@ export function Gallery({ slides, title }: GalleryProps) {
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
 
   return (
-    <CarouselContextProvider slides={slides}>
+    <CarouselContextProvider slides={slides} translationsFactory={getDefaultTranslations}>
       <h2>{title}</h2>
       <GridList cols={isMobile ? 1 : 3}>
         {slides.map((slide, index) => (
@@ -103,10 +104,7 @@ export function Gallery({ slides, title }: GalleryProps) {
           </GridListTile>
         ))}
       </GridList>
-      <CarouselWithModal
-        getTranslations={getDefaultTranslations}
-        title={title}
-      />
+      <CarouselWithModal title={title} />
     </CarouselContextProvider>
   );
 }

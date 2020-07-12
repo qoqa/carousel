@@ -8,8 +8,8 @@ import {
 } from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
-import { CarouselTranslationsType } from './Carousel.type';
 import { fade } from '@material-ui/core/styles/colorManipulator';
+import { useCarouselContext } from './CarouselContext';
 
 const useStyles = makeStyles((theme) => ({
   arrowsContainer: {
@@ -46,17 +46,16 @@ function stopEventPropagationFactory(fn: MouseEventHandler): MouseEventHandler {
 type CarouselControlsProps = {
   goToPreviousSlide: () => void;
   goToNextSlide: () => void;
-  translations: CarouselTranslationsType;
 };
 
 export function CarouselControls({
   goToPreviousSlide,
   goToNextSlide,
-  translations,
 }: CarouselControlsProps) {
   const classes = useStyles();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
+  const { translations } = useCarouselContext();
 
   if (isMobile) {
     return null;

@@ -1,5 +1,9 @@
 import React, { createContext, useContext, useState } from 'react';
-import { CarouselImageType } from './Carousel.type';
+import {
+  CarouselImageType,
+  CarouselTranslationsFactory,
+  CarouselTranslationsType,
+} from './Carousel.type';
 import { actualSlideIndex } from './actualSlideIndex';
 
 export type CarouselContextType = {
@@ -11,30 +15,25 @@ export type CarouselContextType = {
   goToPreviousSlide: () => void;
   goToNextSlide: () => void;
   handleChangeIndex: (currentIndex: number) => void;
-  currentSlideNumber: number;
-  previousSlideNumber: number;
-  nextSlideNumber: number;
   slideIndex: number;
+  translations: CarouselTranslationsType;
 };
 
-const DEFAULT_VALUE: CarouselContextType = {
-  close: () => void 0,
-  open: () => void 0,
-  indexToDisplay: 0,
-  isOpen: false,
-  slides: [],
-  slidesCount: 0,
-} as any;
+const DEFAULT_VALUE: CarouselContextType = {} as any;
 
 const CarouselContext = createContext<CarouselContextType>(DEFAULT_VALUE);
+
+type CarouselContextProviderProps = {
+  children: any;
+  slides: CarouselImageType[];
+  translationsFactory: CarouselTranslationsFactory;
+};
 
 export const CarouselContextProvider = ({
   children,
   slides,
-}: {
-  children: any;
-  slides: CarouselImageType[];
-}) => {
+  translationsFactory,
+}: CarouselContextProviderProps) => {
   const slidesCount = slides?.length || 0;
   const [modalOpen, setModalOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -44,6 +43,13 @@ export const CarouselContextProvider = ({
   const previousSlideNumber =
     actualSlideIndex(currentIndex - 1, slidesCount) + 1;
   const nextSlideNumber = actualSlideIndex(currentIndex + 1, slidesCount) + 1;
+
+  const translations = translationsFactory(
+    currentSlideNumber,
+    nextSlideNumber,
+    previousSlideNumber,
+    slidesCount
+  );
 
   const value: CarouselContextType = {
     openAt: (index: number) => {
@@ -57,10 +63,8 @@ export const CarouselContextProvider = ({
     handleChangeIndex: (current: number) => setCurrentIndex(current),
     slides,
     slidesCount,
-    currentSlideNumber,
-    previousSlideNumber,
-    nextSlideNumber,
     slideIndex: currentIndex,
+    translations,
   };
 
   return (

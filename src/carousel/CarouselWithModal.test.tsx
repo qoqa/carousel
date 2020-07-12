@@ -10,33 +10,30 @@ const theme = createMuiTheme();
 const TestCarousel = () => {
   return (
     <MuiThemeProvider theme={theme}>
-      <CarouselContextProvider slides={slides}>
-        <CarouselWithModal
-          getTranslations={getDefaultTranslations}
-          title="Test Carousel"
-          isInitiallyOpen
-        />
+      <CarouselContextProvider
+        slides={slides}
+        translationsFactory={getDefaultTranslations}
+      >
+        <CarouselWithModal title="Test Carousel" isInitiallyOpen />
       </CarouselContextProvider>
     </MuiThemeProvider>
   );
 };
 
 const TestCarouselTrigger = ({ slideIndexToOpen }: any) => {
-  const { openAt, close } = useCarouselContext();
+  const { openAt } = useCarouselContext();
 
-  return (
-    <>
-      <button onClick={() => openAt(slideIndexToOpen)}>Open</button>
-      <button onClick={() => close()}>Close</button>
-    </>
-  );
+  return <button onClick={() => openAt(slideIndexToOpen)}>Open</button>;
 };
 
 const TestCarouselWithTrigger = ({ slideIndexToOpen }: any) => {
   return (
-    <CarouselContextProvider slides={slides}>
+    <CarouselContextProvider
+      slides={slides}
+      translationsFactory={getDefaultTranslations}
+    >
       <TestCarouselTrigger slideIndexToOpen={slideIndexToOpen} />
-      <CarouselWithModal getTranslations={getDefaultTranslations} />
+      <CarouselWithModal />
     </CarouselContextProvider>
   );
 };
@@ -86,11 +83,11 @@ describe('CarouselWithModal', () => {
 
   it('should not display the controls if there is only one slide', () => {
     const CarouselWithOne = () => (
-      <CarouselContextProvider slides={[slides[0]]}>
-        <CarouselWithModal
-          isInitiallyOpen
-          getTranslations={getDefaultTranslations}
-        />
+      <CarouselContextProvider
+        slides={[slides[0]]}
+        translationsFactory={getDefaultTranslations}
+      >
+        <CarouselWithModal isInitiallyOpen />
       </CarouselContextProvider>
     );
 
@@ -108,14 +105,14 @@ describe('CarouselWithModal', () => {
   });
 
   it('should close the carousel', async () => {
-    const { queryByText, getByText } = render(
+    const { queryByText, getByText, getByTitle } = render(
       <TestCarouselWithTrigger slideIndexToOpen={0} />
     );
 
     getByText('Open').click();
     expect(queryByText('1 over 10')).toBeInTheDocument();
 
-    getByText('Close').click();
+    getByTitle('Close (ESC)').click();
     // Async test to work around the animation delay of the modal
     await waitFor(() =>
       expect(queryByText('1 over 10')).not.toBeInTheDocument()

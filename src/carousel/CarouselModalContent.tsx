@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export function CarouselModalContent({ title, getTranslations }: CarouselType) {
+export function CarouselModalContent({ title }: CarouselType) {
   const {
     carouselCloseButton,
     carouselHeader,
@@ -37,36 +37,26 @@ export function CarouselModalContent({ title, getTranslations }: CarouselType) {
     carouselRoot,
     carouselStatus,
   } = useStyles();
-  const {
-    close,
-    slidesCount,
-    currentSlideNumber,
-    previousSlideNumber,
-    nextSlideNumber,
-  } = useCarouselContext();
-
-  const translations = getTranslations(
-    currentSlideNumber,
-    nextSlideNumber,
-    previousSlideNumber,
-    slidesCount
-  );
+  const { close, slidesCount, translations } = useCarouselContext();
 
   const hasMultipleSlides = slidesCount > 1;
 
   return (
     <div className={carouselRoot} onClick={close}>
       <div className={carouselHeader}>
-        <h2 className={carouselTitle}>{title}</h2>
+        <h2 id="carousel-modal-title" className={carouselTitle}>
+          {title}
+        </h2>
         <IconButton
           className={carouselCloseButton}
           onClick={close}
           disableRipple={true}
+          title={translations.close}
         >
           <CloseIcon />
         </IconButton>
       </div>
-      <Carousel getTranslations={getTranslations} />
+      <Carousel />
       <div
         aria-live="polite"
         role="status"

@@ -2,7 +2,6 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core';
 import { CarouselSlide } from './CarouselSlide';
 import { CarouselControls } from './CarouselControls';
-import { CarouselType } from './Carousel.type';
 import { useCarouselContext } from './CarouselContext';
 import { SwipeableViewsContainer } from './SwipeableViewsContainer';
 
@@ -13,7 +12,7 @@ const useStyles = makeStyles({
   },
 });
 
-export function Carousel({ getTranslations }: CarouselType) {
+export function Carousel() {
   const { carouselContainer } = useStyles();
   const {
     slidesCount,
@@ -21,18 +20,8 @@ export function Carousel({ getTranslations }: CarouselType) {
     goToPreviousSlide,
     goToNextSlide,
     handleChangeIndex,
-    currentSlideNumber,
-    previousSlideNumber,
-    nextSlideNumber,
     slideIndex,
   } = useCarouselContext();
-
-  const translations = getTranslations(
-    currentSlideNumber,
-    nextSlideNumber,
-    previousSlideNumber,
-    slidesCount
-  );
 
   const hasMultipleSlides = slidesCount > 1;
 
@@ -48,7 +37,6 @@ export function Carousel({ getTranslations }: CarouselType) {
         <CarouselControls
           goToPreviousSlide={goToPreviousSlide}
           goToNextSlide={goToNextSlide}
-          translations={translations}
         />
       )}
     </div>
