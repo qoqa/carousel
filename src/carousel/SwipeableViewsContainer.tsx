@@ -1,59 +1,68 @@
-import React from 'react';
-import { actualSlideIndex } from './actualSlideIndex';
-// The types for react-swipeable-views-utils are not up to date.
-// @ts-ignore
-import { bindKeyboard, virtualize } from 'react-swipeable-views-utils';
-// The types for react-swipeable-views are not up to date.
-// @ts-ignore
-import SwipeableViews from 'react-swipeable-views';
-import { makeStyles } from '@material-ui/core/styles';
+import React, { ReactElement } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useCarouselContext } from './CarouselContext';
 
-const VirtualizedSwipableViews = bindKeyboard(virtualize(SwipeableViews));
-
-function viewRendererFactory(viewProps: object[], ViewComponent: any) {
-  return function viewRenderer({ index, key }: any) {
-    // Translate the virtual index to an actual view to display.
-    const viewToDisplay = actualSlideIndex(index, viewProps.length);
-    const view = viewProps[viewToDisplay];
-    return <ViewComponent key={key} {...view} />;
-  };
-}
-
-type SwipeableViewsContainerProps = {
-  viewProps: object[];
-  ViewComponent: any;
-  handleChangeIndex: (currentIndex: number) => void;
-  currentIndex: number;
+const slideSpeed = 500;
+const variants = {
+  enter: (direction: number) => {
+    return {
+      x: direction > 0 ? slideSpeed : -slideSpeed,
+    };
+  },
+  center: {
+    x: 0,
+  },
+  exit: (direction: number) => {
+    return {
+      x: direction < 0 ? slideSpeed : -slideSpeed,
+      opacity: 0,
+    };
+  },
 };
 
-const useStyles = makeStyles(() => ({
-  slide: {
-    alignSelf: 'center',
-  },
-}));
+const swipeConfidenceThreshold = 10000;
+const swipePower = (offset: number, velocity: number) => {
+  return Math.abs(offset) * velocity;
+};
 
-export function SwipeableViewsContainer({
-  viewProps,
-  ViewComponent,
-  handleChangeIndex,
-  currentIndex,
-}: SwipeableViewsContainerProps) {
-  const hasMultipleViews = viewProps.length > 1;
-  const classes = useStyles();
-
-  // No need to have a swipeable view if there is only one view
-  if (!hasMultipleViews) {
-    return <ViewComponent {...viewProps[0]} />;
-  }
+export default function SwipeableViewsContainer({
+  children,
+  className,
+}: {
+  className?: string;
+  children: ReactElement;
+}) {
+  const { slideIndex, direction, goToSlide } = useCarouselContext();
 
   return (
-    <VirtualizedSwipableViews
-      onChangeIndex={handleChangeIndex}
-      index={currentIndex}
-      slideRenderer={viewRendererFactory(viewProps, ViewComponent)}
-      overscanSlideAfter={3}
-      overscanSlideBefore={3}
-      slideClassName={classes.slide}
-    />
+    <AnimatePresence initial={false} custom={direction}>
+      <motion.div
+        custom={direction}
+        className={className}
+        key={slideIndex}
+        variants={variants}
+        initial="enter"
+        animate="center"
+        exit="exit"
+        transition={{
+          x: { stiffness: 300, damping: 200 },
+          opacity: { duration: 0.2 },
+        }}
+        drag="x"
+        dragConstraints={{ left: 0, right: 0 }}
+        dragElastic={1}
+        onDragEnd={(e, { offset, velocity }) => {
+          const swipe = swipePower(offset.x, velocity.x);
+
+          if (swipe < -swipeConfidenceThreshold) {
+            goToSlide(1);
+          } else if (swipe > swipeConfidenceThreshold) {
+            goToSlide(-1);
+          }
+        }}
+      >
+        {children}
+      </motion.div>
+    </AnimatePresence>
   );
 }

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useCallback, useContext, useState } from 'react';
 import {
   CarouselImageType,
   CarouselTranslationsFactory,
@@ -12,11 +12,11 @@ export type CarouselContextType = {
   isOpen: boolean;
   slides: CarouselImageType[];
   slidesCount: number;
-  goToPreviousSlide: () => void;
-  goToNextSlide: () => void;
-  handleChangeIndex: (currentIndex: number) => void;
+  goToSlide: (direction: number) => void;
   slideIndex: number;
   translations: CarouselTranslationsType;
+  direction: number;
+  hasMultipleSlides: boolean;
 };
 
 const DEFAULT_VALUE: CarouselContextType = {} as any;
@@ -36,7 +36,7 @@ export const CarouselContextProvider = ({
 }: CarouselContextProviderProps) => {
   const slidesCount = slides?.length || 0;
   const [modalOpen, setModalOpen] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [[currentIndex, direction], setState] = useState<Array<number>>([0, 0]);
 
   // For human readable texts
   const currentSlideNumber = actualSlideIndex(currentIndex, slidesCount) + 1;
@@ -51,20 +51,24 @@ export const CarouselContextProvider = ({
     slidesCount
   );
 
+  const goToSlide = useCallback((newDirection: number) => {
+    setState(([index]) => [index + newDirection, newDirection]);
+  }, []);
+
   const value: CarouselContextType = {
     openAt: (index: number) => {
-      setCurrentIndex(index);
+      setState([index, 0]);
       setModalOpen(true);
     },
     close: () => setModalOpen(false),
     isOpen: modalOpen,
-    goToPreviousSlide: () => setCurrentIndex(currentIndex - 1),
-    goToNextSlide: () => setCurrentIndex(currentIndex + 1),
-    handleChangeIndex: (current: number) => setCurrentIndex(current),
+    goToSlide,
     slides,
     slidesCount,
     slideIndex: currentIndex,
     translations,
+    direction,
+    hasMultipleSlides: slidesCount > 1,
   };
 
   return (
@@ -74,5 +78,6 @@ export const CarouselContextProvider = ({
   );
 };
 
-export const useCarouselContext = () =>
-  useContext<CarouselContextType>(CarouselContext);
+export function useCarouselContext(): CarouselContextType {
+  return useContext<CarouselContextType>(CarouselContext);
+}

@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     // Critical, otherwise the swipe doesn't work on the underline component
     pointerEvents: 'none',
+    zIndex: theme.zIndex.modal + 10,
   },
   arrow: {
     // The rule above cascades to the button
@@ -44,19 +45,12 @@ function stopEventPropagationFactory(fn: MouseEventHandler): MouseEventHandler {
   };
 }
 
-type CarouselControlsProps = {
-  goToPreviousSlide: () => void;
-  goToNextSlide: () => void;
-};
-
-export function CarouselControls({
-  goToPreviousSlide,
-  goToNextSlide,
-}: CarouselControlsProps) {
+export function CarouselControls() {
   const classes = useStyles();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
   const { translations } = useCarouselContext();
+  const { goToSlide } = useCarouselContext();
 
   if (isMobile) {
     return null;
@@ -67,7 +61,7 @@ export function CarouselControls({
       <Fade in={true}>
         <IconButton
           className={classes.arrow}
-          onClick={stopEventPropagationFactory(goToPreviousSlide)}
+          onClick={stopEventPropagationFactory(() => goToSlide(-1))}
           title={translations.previousButton}
         >
           <ArrowBackIcon aria-hidden />
@@ -76,7 +70,7 @@ export function CarouselControls({
       <Fade in={true}>
         <IconButton
           className={classes.arrow}
-          onClick={stopEventPropagationFactory(goToNextSlide)}
+          onClick={stopEventPropagationFactory(() => goToSlide(1))}
           title={translations.nextButton}
         >
           <ArrowForwardIcon aria-hidden />

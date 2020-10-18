@@ -40,9 +40,7 @@ export function CarouselModalContent({ title }: CarouselType) {
     carouselRoot,
     carouselStatus,
   } = useStyles();
-  const { close, slidesCount, translations } = useCarouselContext();
-
-  const hasMultipleSlides = slidesCount > 1;
+  const { close, translations, hasMultipleSlides } = useCarouselContext();
 
   return (
     <div className={carouselRoot} onClick={close}>

@@ -1,7 +1,13 @@
 import React from 'react';
 import { getDefaultTranslations, slides } from '../fixtures';
 import { CarouselWithModal } from './CarouselWithModal';
-import { render, act, fireEvent, waitFor } from '@testing-library/react';
+import {
+  render,
+  act,
+  fireEvent,
+  waitFor,
+  screen,
+} from '@testing-library/react';
 import { CarouselContextProvider, useCarouselContext } from './CarouselContext';
 
 const TestCarousel = () => {
@@ -35,45 +41,54 @@ const TestCarouselWithTrigger = ({ slideIndexToOpen }: any) => {
 
 describe('CarouselWithModal', () => {
   it('should display the title', () => {
-    const { getByText } = render(<TestCarousel />);
-    expect(getByText('Test Carousel')).toBeInTheDocument();
+    render(<TestCarousel />);
+    expect(screen.getByText('Test Carousel')).toBeInTheDocument();
   });
 
   it('should display the first image', async () => {
-    const { queryByAltText, getByAltText } = render(<TestCarousel />);
+    render(<TestCarousel />);
     const imageAltText = slides[0].alt;
 
     act(() => {
       // Triggers the load event that mutates the state. JSDom doesn't
       // automatically load the image.
-      fireEvent.load(getByAltText(imageAltText));
+      fireEvent.load(screen.getByAltText(imageAltText));
     });
 
     await waitFor(() => {
-      expect(queryByAltText(imageAltText)).toBeVisible();
+      expect(screen.queryByAltText(imageAltText)).toBeVisible();
     });
   });
 
   it('should go to the next slide if the next button is pressed', () => {
-    const { getByText, getByAltText, getByTitle } = render(<TestCarousel />);
-    expect(getByText('1 over 10')).toBeInTheDocument();
+    render(<TestCarousel />);
+    expect(screen.getByText('1 over 10')).toBeInTheDocument();
 
-    getByTitle('Go to slide 2').click();
+    screen.getByTitle('Go to slide 2').click();
 
-    const secondImage = getByAltText(slides[1].alt);
-    expect(secondImage).toBeInTheDocument();
-    expect(getByText('2 over 10')).toBeInTheDocument();
+    expect(screen.getByText('2 over 10')).toBeInTheDocument();
+  });
+
+  it('should go to the next slide event if Proxy is not supported', () => {
+    // @ts-ignore
+    delete window.Proxy;
+
+    render(<TestCarousel />);
+
+    expect(screen.getByText('1 over 10')).toBeInTheDocument();
+
+    screen.getByTitle('Go to slide 2').click();
+
+    expect(screen.getByText('2 over 10')).toBeInTheDocument();
   });
 
   it('should loop back to the last slide if the back button is pressed', () => {
-    const { getByText, getByAltText, getByTitle } = render(<TestCarousel />);
-    expect(getByText('1 over 10')).toBeInTheDocument();
+    render(<TestCarousel />);
+    expect(screen.getByText('1 over 10')).toBeInTheDocument();
 
-    getByTitle('Go to slide 10').click();
+    screen.getByTitle('Go to slide 10').click();
 
-    const secondImage = getByAltText(slides[9].alt);
-    expect(secondImage).toBeInTheDocument();
-    expect(getByText('10 over 10')).toBeInTheDocument();
+    expect(screen.getByText('10 over 10')).toBeInTheDocument();
   });
 
   it('should not display the controls if there is only one slide', () => {
@@ -86,31 +101,27 @@ describe('CarouselWithModal', () => {
       </CarouselContextProvider>
     );
 
-    const { queryByText } = render(<CarouselWithOne />);
-    expect(queryByText('1 over 10')).not.toBeInTheDocument();
+    render(<CarouselWithOne />);
+    expect(screen.queryByText('1 over 10')).not.toBeInTheDocument();
   });
 
   it('should open the carousel at the right slide', () => {
-    const { getByText } = render(
-      <TestCarouselWithTrigger slideIndexToOpen={2} />
-    );
+    render(<TestCarouselWithTrigger slideIndexToOpen={2} />);
 
-    getByText('Open').click();
-    expect(getByText('3 over 10')).toBeInTheDocument();
+    screen.getByText('Open').click();
+    expect(screen.getByText('3 over 10')).toBeInTheDocument();
   });
 
   it('should close the carousel', async () => {
-    const { queryByText, getByText, getByTitle } = render(
-      <TestCarouselWithTrigger slideIndexToOpen={0} />
-    );
+    render(<TestCarouselWithTrigger slideIndexToOpen={0} />);
 
-    getByText('Open').click();
-    expect(queryByText('1 over 10')).toBeInTheDocument();
+    screen.getByText('Open').click();
+    expect(screen.queryByText('1 over 10')).toBeInTheDocument();
 
-    getByTitle('Close (ESC)').click();
+    screen.getByTitle('Close (ESC)').click();
     // Async test to work around the animation delay of the modal
     await waitFor(() =>
-      expect(queryByText('1 over 10')).not.toBeInTheDocument()
+      expect(screen.queryByText('1 over 10')).not.toBeInTheDocument()
     );
   });
 });

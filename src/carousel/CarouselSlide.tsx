@@ -2,14 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core';
 import { useCarouselContext } from './CarouselContext';
 import { ImageWithPlaceholder } from './ImageWithPlaceholder/ImageWithPlaceholder';
-
-type CarouselSlideType = {
-  src: string;
-  srcWebp?: string;
-  alt: string;
-  width: number;
-  height: number;
-};
+import { CarouselImageType } from './Carousel.type';
 
 const useStyles = makeStyles((theme) => ({
   slide: {
@@ -44,7 +37,7 @@ export function CarouselSlide({
   srcWebp,
   width,
   height,
-}: CarouselSlideType) {
+}: CarouselImageType) {
   const classes = useStyles();
   const { close } = useCarouselContext();
 
