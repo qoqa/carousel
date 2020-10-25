@@ -11,9 +11,15 @@ const WHITELIST = [
   'main',
   'module',
   'types',
-  'peerDependencies',
   'dependencies',
 ];
+
+const peerDependencies = {
+  '@material-ui/core': '^4',
+  '@material-ui/icons': '^4',
+  react: '*',
+  'react-dom': '*',
+};
 
 const packageJson = JSON.parse(fs.readFileSync(mainPackageJsonPath));
 
@@ -25,6 +31,8 @@ const newPackageJson = Object.keys(packageJson).reduce((result, key) => {
 
   return result;
 }, {});
+
+newPackageJson.peerDependencies = peerDependencies;
 
 const newPackageJsonFormatted = JSON.stringify(newPackageJson, undefined, 2);
 
