@@ -10,6 +10,12 @@
   "rules": {
     "prettier/prettier": "warn",
     "linebreak-style": ["error", "unix"],
-    "testing-library/prefer-wait-for": "error"
+    "testing-library/prefer-wait-for": "error",
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": ["@material-ui/*/*/*", "!@material-ui/core/test-utils/*"]
+      }
+    ]
   }
 }

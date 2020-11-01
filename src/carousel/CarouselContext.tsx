@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, {
+  Context,
+  createContext,
+  useContext,
+  useMemo,
+  useState,
+} from 'react';
 import {
   CarouselImageType,
   CarouselTranslationsFactory,
@@ -19,9 +25,16 @@ export type CarouselContextType = {
   translations: CarouselTranslationsType;
 };
 
-const DEFAULT_VALUE: CarouselContextType = {} as any;
+// Tree-shakable context
+let CarouselContext: Context<CarouselContextType>;
+function getContext() {
+  if (CarouselContext) {
+    return CarouselContext;
+  }
 
-const CarouselContext = createContext<CarouselContextType>(DEFAULT_VALUE);
+  CarouselContext = createContext<CarouselContextType>({} as any);
+  return CarouselContext;
+}
 
 type CarouselContextProviderProps = {
   children: any;
@@ -67,12 +80,11 @@ export const CarouselContextProvider = ({
     translations,
   };
 
-  return (
-    <CarouselContext.Provider value={value}>
-      {children}
-    </CarouselContext.Provider>
-  );
+  const Context = useMemo(getContext, []);
+
+  return <Context.Provider value={value}>{children}</Context.Provider>;
 };
 
-export const useCarouselContext = () =>
-  useContext<CarouselContextType>(CarouselContext);
+export function useCarouselContext(): CarouselContextType {
+  return useContext<CarouselContextType>(getContext());
+}

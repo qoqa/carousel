@@ -1,6 +1,13 @@
 import pkg from './package.json';
 import typescript from 'rollup-plugin-typescript2';
 
+const external = Object.keys(pkg.dependencies || {});
+
+// Other external dependencies that are not imported directly
+external.push(/@material-ui\/.*/);
+external.push('react');
+external.push('react-dom');
+
 export default {
   input: 'src/carousel/index.ts',
   output: [
@@ -13,10 +20,7 @@ export default {
       format: 'cjs',
     },
   ],
-  external: [
-    ...Object.keys(pkg.dependencies || {}),
-    ...Object.keys(pkg.peerDependencies || {}),
-  ],
+  external: external,
   plugins: [
     typescript({
       tsconfig: 'src/carousel/tsconfig-build.json',

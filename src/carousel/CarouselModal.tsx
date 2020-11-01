@@ -2,18 +2,19 @@ import React from 'react';
 import { Dialog, Fade, makeStyles } from '@material-ui/core';
 import { useCarouselContext } from './CarouselContext';
 
-const useStyles = makeStyles((theme) => ({
-  modalRoot: {
-    '& > *:focus': {
-      // The modal sets the focus on the Paper within, but it's quite ugly
-      outline: 'none',
+const useStyles = () =>
+  makeStyles(() => ({
+    modalRoot: {
+      '& > *:focus': {
+        // The modal sets the focus on the Paper within, but it's quite ugly
+        outline: 'none',
+      },
     },
-  },
-  modalContent: {
-    position: 'relative',
-    height: '100%',
-  },
-}));
+    modalContent: {
+      position: 'relative',
+      height: '100%',
+    },
+  }));
 
 type CarouselModalProps = {
   isInitiallyOpen?: boolean;
@@ -24,7 +25,7 @@ export function CarouselModal({
   children,
   isInitiallyOpen,
 }: CarouselModalProps) {
-  const classes = useStyles();
+  const classes = useStyles()();
   const { isOpen, close } = useCarouselContext();
 
   const open = isInitiallyOpen || isOpen;

@@ -4,14 +4,15 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const DEFAULT_DELAY_MS = 1000;
 
-const useStyles = makeStyles((theme) => ({
-  spinner: {
-    color: theme.palette.grey[300],
-  },
-}));
+const useStyles = () =>
+  makeStyles((theme) => ({
+    spinner: {
+      color: theme.palette.grey[300],
+    },
+  }));
 
 export default function DelayedSpinner() {
-  const classes = useStyles();
+  const classes = useStyles()();
   const [isVisible, setVisible] = useState(false);
 
   useEffect(() => {
