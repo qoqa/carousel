@@ -41,6 +41,7 @@
     "react-scripts": "3.4.3",
     "rollup": "2.32.0",
     "rollup-plugin-typescript2": "0.28.0",
+    "rollup-plugin-virtual": "1.0.1",
     "typescript": "4.0.3"
   },
   "scripts": {
@@ -52,7 +53,8 @@
     "deploy": "npx gh-pages -d build",
     "format": "yarn lint --fix",
     "release": "npm-run-all build:package && cd dist && npm publish",
-    "validate": "CI=true npm-run-all lint test build build:package"
+    "validate": "CI=true npm-run-all lint test build validate:package",
+    "validate:package": "NODE_ENV=production yarn build:package && node validate-package.js"
   },
   "husky": {
     "hooks": {

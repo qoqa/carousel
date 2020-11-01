@@ -5,32 +5,33 @@ import { CarouselType } from './Carousel.type';
 import { useCarouselContext } from './CarouselContext';
 import { Carousel } from './Carousel';
 
-const useStyles = makeStyles((theme) => ({
-  carouselRoot: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    height: '100%',
-    cursor: 'zoom-out',
-    backgroundColor: 'black',
-    color: 'white',
-  },
-  carouselHeader: {
-    display: 'flex',
-    justifyContent: 'space-between',
-  },
-  carouselTitle: {
-    margin: theme.spacing(2),
-  },
-  carouselCloseButton: {
-    margin: theme.spacing(2),
-    color: 'white',
-  },
-  carouselStatus: {
-    textAlign: 'end',
-    margin: theme.spacing(2),
-  },
-}));
+const useStyles = () =>
+  makeStyles((theme) => ({
+    carouselRoot: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-between',
+      height: '100%',
+      cursor: 'zoom-out',
+      backgroundColor: 'black',
+      color: 'white',
+    },
+    carouselHeader: {
+      display: 'flex',
+      justifyContent: 'space-between',
+    },
+    carouselTitle: {
+      margin: theme.spacing(2),
+    },
+    carouselCloseButton: {
+      margin: theme.spacing(2),
+      color: 'white',
+    },
+    carouselStatus: {
+      textAlign: 'end',
+      margin: theme.spacing(2),
+    },
+  }));
 
 export function CarouselModalContent({ title }: CarouselType) {
   const {
@@ -39,7 +40,7 @@ export function CarouselModalContent({ title }: CarouselType) {
     carouselTitle,
     carouselRoot,
     carouselStatus,
-  } = useStyles();
+  } = useStyles()();
   const { close, slidesCount, translations } = useCarouselContext();
 
   const hasMultipleSlides = slidesCount > 1;
