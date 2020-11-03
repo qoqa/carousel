@@ -2,29 +2,28 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core';
 import Placeholder from './Placeholder';
 
-const useStyle = () =>
-  makeStyles({
-    root: {
-      // Remove the blank line at the bottom of the container.
-      lineHeight: 0,
-      // This is done because we want to the image component to behave like an `img` tag.
-      display: 'inline-block',
-      position: 'relative',
-    },
-    picture: {
-      display: 'inline-block',
-      transition: 'opacity 250ms',
-      lineHeight: 1,
-    },
-    pictureVisible: {
-      opacity: 1,
-    },
-    pictureHidden: {
-      opacity: 0,
-      position: 'absolute',
-      clip: 'rect(0, 0, 0, 0)',
-    },
-  });
+const useStyles = /*#__PURE__*/ makeStyles({
+  root: {
+    // Remove the blank line at the bottom of the container.
+    lineHeight: 0,
+    // This is done because we want to the image component to behave like an `img` tag.
+    display: 'inline-block',
+    position: 'relative',
+  },
+  picture: {
+    display: 'inline-block',
+    transition: 'opacity 250ms',
+    lineHeight: 1,
+  },
+  pictureVisible: {
+    opacity: 1,
+  },
+  pictureHidden: {
+    opacity: 0,
+    position: 'absolute',
+    clip: 'rect(0, 0, 0, 0)',
+  },
+});
 
 type ImageWithLoaderProps = {
   src: string;
@@ -46,7 +45,7 @@ export function ImageWithPlaceholder({
   imgClassName,
 }: ImageWithLoaderProps) {
   const [isLoaded, setLoaded] = useState<boolean>(false);
-  const classes = useStyle()();
+  const classes = useStyles();
 
   // Callback when the image is actually loaded. This assumes that the browser
   // loads the image even if it's not on the screen.
