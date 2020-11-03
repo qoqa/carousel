@@ -9,18 +9,17 @@ type PlaceholderProps = {
   className?: string;
 };
 
-const useStyles = () =>
-  makeStyles(() => ({
-    root: {
-      position: 'relative',
-    },
-    spinner: {
-      position: 'absolute',
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%, -50%)',
-    },
-  }));
+const useStyles = /*#__PURE__*/ makeStyles(() => ({
+  root: {
+    position: 'relative',
+  },
+  spinner: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+  },
+}));
 
 function getInlineSVG(width: number, height: number): string {
   return `
@@ -40,7 +39,7 @@ function inlineBase64(value: string): string {
 }
 
 function Placeholder({ height, width, className = '' }: PlaceholderProps) {
-  const classes = useStyles()();
+  const classes = useStyles();
   return (
     <div className={classes.root}>
       <div className={classes.spinner}>

@@ -5,16 +5,15 @@ import { CarouselControls } from './CarouselControls';
 import { useCarouselContext } from './CarouselContext';
 import { SwipeableViewsContainer } from './SwipeableViewsContainer';
 
-const useStyles = () =>
-  makeStyles({
-    carouselContainer: {
-      position: 'relative',
-      lineHeight: 0,
-    },
-  });
+const useStyles = /*#__PURE__*/ makeStyles({
+  carouselContainer: {
+    position: 'relative',
+    lineHeight: 0,
+  },
+});
 
 export function Carousel() {
-  const { carouselContainer } = useStyles()();
+  const { carouselContainer } = useStyles();
   const {
     slidesCount,
     slides,

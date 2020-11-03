@@ -24,12 +24,11 @@ type SwipeableViewsContainerProps = {
   currentIndex: number;
 };
 
-const useStyles = () =>
-  makeStyles(() => ({
-    slide: {
-      alignSelf: 'center',
-    },
-  }));
+const useStyles = /*#__PURE__*/ makeStyles(() => ({
+  slide: {
+    alignSelf: 'center',
+  },
+}));
 
 export function SwipeableViewsContainer({
   viewProps,
@@ -38,7 +37,7 @@ export function SwipeableViewsContainer({
   currentIndex,
 }: SwipeableViewsContainerProps) {
   const hasMultipleViews = viewProps.length > 1;
-  const classes = useStyles()();
+  const classes = useStyles();
 
   const VirtualizedSwipableViews = useMemo(
     () => bindKeyboard(virtualize(SwipeableViews)),
