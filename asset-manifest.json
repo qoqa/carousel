@@ -4,10 +4,10 @@
     "main.js.map": "/carousel/static/js/main.506c249f.chunk.js.map",
     "runtime-main.js": "/carousel/static/js/runtime-main.6ef58471.js",
     "runtime-main.js.map": "/carousel/static/js/runtime-main.6ef58471.js.map",
-    "static/js/2.75159449.chunk.js": "/carousel/static/js/2.75159449.chunk.js",
-    "static/js/2.75159449.chunk.js.map": "/carousel/static/js/2.75159449.chunk.js.map",
+    "static/js/2.6c8c3f1f.chunk.js": "/carousel/static/js/2.6c8c3f1f.chunk.js",
+    "static/js/2.6c8c3f1f.chunk.js.map": "/carousel/static/js/2.6c8c3f1f.chunk.js.map",
     "index.html": "/carousel/index.html",
-    "static/js/2.75159449.chunk.js.LICENSE.txt": "/carousel/static/js/2.75159449.chunk.js.LICENSE.txt",
+    "static/js/2.6c8c3f1f.chunk.js.LICENSE.txt": "/carousel/static/js/2.6c8c3f1f.chunk.js.LICENSE.txt",
     "static/media/1.6f9e9770.jpg": "/carousel/static/media/1.6f9e9770.jpg",
     "static/media/1.efda78eb.webp": "/carousel/static/media/1.efda78eb.webp",
     "static/media/10.014110e5.jpg": "/carousel/static/media/10.014110e5.jpg",
@@ -41,7 +41,7 @@
   },
   "entrypoints": [
     "static/js/runtime-main.6ef58471.js",
-    "static/js/2.75159449.chunk.js",
+    "static/js/2.6c8c3f1f.chunk.js",
     "static/js/main.506c249f.chunk.js"
   ]
 }
