@@ -2,7 +2,7 @@ name: Publish Package
 
 on:
   release:
-    types: [created, updated]
+    types: [created]
 
 jobs:
   publish:
@@ -31,5 +31,5 @@ jobs:
         run: |
           yarn release
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.githubToken }}
+          NODE_AUTH_TOKEN: ${{ secrets.GPR_GITHUB_TOKEN }}
 
