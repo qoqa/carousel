@@ -38,7 +38,7 @@
     "prettier": "2.2.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",
-    "react-scripts": "4.0.1",
+    "react-scripts": "4.0.2",
     "rollup": "2.38.5",
     "rollup-plugin-typescript2": "0.29.0",
     "rollup-plugin-virtual": "1.0.1",
