@@ -1,6 +1,6 @@
 import React, { MouseEvent, MouseEventHandler } from 'react';
 import {
-  alpha,
+  fade,
   Fade,
   IconButton,
   makeStyles,
@@ -30,9 +30,9 @@ const useStyles = /*#__PURE__*/ makeStyles((theme) => ({
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
     color: 'white',
-    backgroundColor: alpha('#000000', 0.6),
+    backgroundColor: fade('#000000', 0.6),
     '&:hover': {
-      backgroundColor: alpha('#000000', 0.8),
+      backgroundColor: fade('#000000', 0.8),
     },
   },
 }));
