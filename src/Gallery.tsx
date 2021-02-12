@@ -6,8 +6,8 @@ import {
   useCarouselContext,
 } from './carousel';
 import {
-  ImageList,
-  ImageListItem,
+  GridList,
+  GridListTile,
   makeStyles,
   useMediaQuery,
   useTheme,
@@ -69,13 +69,13 @@ export function Gallery({ slides, title }: GalleryProps) {
       translationsFactory={getDefaultTranslations}
     >
       <h2>{title}</h2>
-      <ImageList cols={isMobile ? 1 : 3}>
+      <GridList cols={isMobile ? 1 : 3}>
         {slides.map((slide, index) => (
-          <ImageListItem key={index}>
+          <GridListTile key={index}>
             <ClickableImage index={index} {...slide} />
-          </ImageListItem>
+          </GridListTile>
         ))}
-      </ImageList>
+      </GridList>
       <CarouselWithModal title={title} />
     </CarouselContextProvider>
   );

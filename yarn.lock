@@ -2094,14 +2094,14 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@material-ui/core@4.11.3-deprecations.1":
-  version "4.11.3-deprecations.1"
-  resolved "https://registry.yarnpkg.com/@material-ui/core/-/core-4.11.3-deprecations.1.tgz#e7accb3f4b8006ffe3f7a0070ca8dda6fc4101e4"
-  integrity sha512-uM/yQkCnRiKBacq39vLb0vcBe7aXeDIzA/Ml3dNlXKGw6/DoWmbMSaNr5kCSpe2bqsqNIRxaqlraT65IGBVW8A==
+"@material-ui/core@4.11.3":
+  version "4.11.3"
+  resolved "https://registry.yarnpkg.com/@material-ui/core/-/core-4.11.3.tgz#f22e41775b0bd075e36a7a093d43951bf7f63850"
+  integrity sha512-Adt40rGW6Uds+cAyk3pVgcErpzU/qxc7KBR94jFHBYretU4AtWZltYcNsbeMn9tXL86jjVL1kuGcIHsgLgFGRw==
   dependencies:
     "@babel/runtime" "^7.4.4"
-    "@material-ui/styles" "4.11.3-deprecations.1"
-    "@material-ui/system" "4.11.3-deprecations.1"
+    "@material-ui/styles" "^4.11.3"
+    "@material-ui/system" "^4.11.3"
     "@material-ui/types" "^5.1.0"
     "@material-ui/utils" "^4.11.2"
     "@types/react-transition-group" "^4.2.0"
@@ -2119,10 +2119,10 @@
   dependencies:
     "@babel/runtime" "^7.4.4"
 
-"@material-ui/styles@4.11.3-deprecations.1":
-  version "4.11.3-deprecations.1"
-  resolved "https://registry.yarnpkg.com/@material-ui/styles/-/styles-4.11.3-deprecations.1.tgz#32590cd4d478b67839095458137e1db167a182b8"
-  integrity sha512-SXbKJPUZ/VnEGJhflnHlhpLkIYLlG/4FTN0Wlsw44PrAhIu5ZsQERix5yEzzv3rJI+8YRLS0LzPzjmTwGrCMNw==
+"@material-ui/styles@^4.11.3":
+  version "4.11.3"
+  resolved "https://registry.yarnpkg.com/@material-ui/styles/-/styles-4.11.3.tgz#1b8d97775a4a643b53478c895e3f2a464e8916f2"
+  integrity sha512-HzVzCG+PpgUGMUYEJ2rTEmQYeonGh41BYfILNFb/1ueqma+p1meSdu4RX6NjxYBMhf7k+jgfHFTTz+L1SXL/Zg==
   dependencies:
     "@babel/runtime" "^7.4.4"
     "@emotion/hash" "^0.8.0"
@@ -2141,10 +2141,10 @@
     jss-plugin-vendor-prefixer "^10.5.1"
     prop-types "^15.7.2"
 
-"@material-ui/system@4.11.3-deprecations.1":
-  version "4.11.3-deprecations.1"
-  resolved "https://registry.yarnpkg.com/@material-ui/system/-/system-4.11.3-deprecations.1.tgz#ff0f3e8256a1dad16c385645698093499a8d513d"
-  integrity sha512-TZ0xnYYtltjinw0Ie2I/EXHOMmluVV/xrKNN9VEFxQOui1GR+5ypMCptFYbV8lYb5AnTuzHQeDGJpP+K/EEMpg==
+"@material-ui/system@^4.11.3":
+  version "4.11.3"
+  resolved "https://registry.yarnpkg.com/@material-ui/system/-/system-4.11.3.tgz#466bc14c9986798fd325665927c963eb47cc4143"
+  integrity sha512-SY7otguNGol41Mu2Sg6KbBP1ZRFIbFLHGK81y4KYbsV2yIcaEPOmsCK6zwWlp+2yTV3J/VwT6oSBARtGIVdXPw==
   dependencies:
     "@babel/runtime" "^7.4.4"
     "@material-ui/utils" "^4.11.2"
