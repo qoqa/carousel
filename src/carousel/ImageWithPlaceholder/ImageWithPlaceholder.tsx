@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { makeStyles } from '@material-ui/core';
 import Placeholder from './Placeholder';
 
@@ -43,7 +43,7 @@ export function ImageWithPlaceholder({
   height,
   className = '',
   imgClassName,
-}: ImageWithLoaderProps) {
+}: ImageWithLoaderProps): JSX.Element {
   const [isLoaded, setLoaded] = useState<boolean>(false);
   const classes = useStyles();
 

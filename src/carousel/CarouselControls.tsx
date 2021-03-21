@@ -1,4 +1,4 @@
-import React, { MouseEvent, MouseEventHandler } from 'react';
+import { MouseEvent, MouseEventHandler } from 'react';
 import {
   fade,
   Fade,

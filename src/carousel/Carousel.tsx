@@ -1,4 +1,3 @@
-import React from 'react';
 import { makeStyles } from '@material-ui/core';
 import { CarouselSlide } from './CarouselSlide';
 import { CarouselControls } from './CarouselControls';
@@ -12,7 +11,7 @@ const useStyles = /*#__PURE__*/ makeStyles({
   },
 });
 
-export function Carousel() {
+export function Carousel(): JSX.Element {
   const { carouselContainer } = useStyles();
   const {
     slidesCount,

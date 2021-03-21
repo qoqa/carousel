@@ -1,4 +1,3 @@
-import React from 'react';
 import { makeStyles } from '@material-ui/core';
 import { useCarouselContext } from './CarouselContext';
 import { ImageWithPlaceholder } from './ImageWithPlaceholder/ImageWithPlaceholder';

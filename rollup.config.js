@@ -7,8 +7,9 @@ const external = Object.keys(pkg.dependencies || {});
 external.push(/@material-ui\/.*/);
 external.push('react');
 external.push('react-dom');
+external.push('react/jsx-runtime');
 
-export default {
+const rollupConfiguration = {
   input: 'src/carousel/index.ts',
   output: [
     {
@@ -27,3 +28,5 @@ export default {
     }),
   ],
 };
+
+export default rollupConfiguration;

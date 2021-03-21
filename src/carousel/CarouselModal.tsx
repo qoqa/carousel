@@ -1,4 +1,3 @@
-import React from 'react';
 import { Dialog, Fade, makeStyles } from '@material-ui/core';
 import { useCarouselContext } from './CarouselContext';
 

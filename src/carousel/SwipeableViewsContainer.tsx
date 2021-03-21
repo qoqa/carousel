@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { actualSlideIndex } from './actualSlideIndex';
 // The types for react-swipeable-views-utils are not up to date.
 // @ts-ignore

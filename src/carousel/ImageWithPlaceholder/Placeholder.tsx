@@ -1,4 +1,3 @@
-import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import DelayedSpinner from './DelayedSpinner';
 
@@ -38,7 +37,11 @@ function inlineBase64(value: string): string {
   return `data:image/svg+xml;base64,${btoa(value)}`;
 }
 
-function Placeholder({ height, width, className = '' }: PlaceholderProps) {
+export default function Placeholder({
+  height,
+  width,
+  className = '',
+}: PlaceholderProps): JSX.Element {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -55,5 +58,3 @@ function Placeholder({ height, width, className = '' }: PlaceholderProps) {
     </div>
   );
 }
-
-export default Placeholder;

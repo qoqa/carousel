@@ -8,6 +8,7 @@ const external = Object.keys(pkg.dependencies || {});
 external.push(/@material-ui\/.*/);
 external.push('react');
 external.push('react-dom');
+external.push('react/jsx-runtime');
 
 // Check that the bundle is empty when tree shaken.
 // Inspired by https://github.com/Rich-Harris/agadoo/blob/master/index.js

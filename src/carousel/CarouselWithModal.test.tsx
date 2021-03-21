@@ -1,4 +1,3 @@
-import React from 'react';
 import { getDefaultTranslations, slides } from '../fixtures';
 import { CarouselWithModal } from './CarouselWithModal';
 import { render, act, fireEvent, waitFor } from '@testing-library/react';
