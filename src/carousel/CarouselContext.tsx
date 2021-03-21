@@ -1,4 +1,11 @@
-import { Context, createContext, useContext, useMemo, useState } from 'react';
+import {
+  Context,
+  createContext,
+  PropsWithChildren,
+  useContext,
+  useMemo,
+  useState,
+} from 'react';
 import {
   CarouselImageType,
   CarouselTranslationsFactory,
@@ -31,7 +38,6 @@ function getContext() {
 }
 
 type CarouselContextProviderProps = {
-  children: any;
   slides: CarouselImageType[];
   translationsFactory: CarouselTranslationsFactory;
 };
@@ -40,7 +46,7 @@ export function CarouselContextProvider({
   children,
   slides,
   translationsFactory,
-}: CarouselContextProviderProps): JSX.Element {
+}: PropsWithChildren<CarouselContextProviderProps>): JSX.Element {
   const slidesCount = slides?.length || 0;
   const [modalOpen, setModalOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState<number>(0);

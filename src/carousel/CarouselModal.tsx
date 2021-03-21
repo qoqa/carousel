@@ -1,5 +1,6 @@
 import { Dialog, Fade, makeStyles } from '@material-ui/core';
 import { useCarouselContext } from './CarouselContext';
+import { PropsWithChildren } from 'react';
 
 const useStyles = /*#__PURE__*/ makeStyles(() => ({
   modalRoot: {
@@ -16,13 +17,12 @@ const useStyles = /*#__PURE__*/ makeStyles(() => ({
 
 type CarouselModalProps = {
   isInitiallyOpen?: boolean;
-  children: any;
 };
 
 export function CarouselModal({
   children,
   isInitiallyOpen,
-}: CarouselModalProps) {
+}: PropsWithChildren<CarouselModalProps>) {
   const classes = useStyles();
   const { isOpen, close } = useCarouselContext();
 
