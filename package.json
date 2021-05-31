@@ -15,7 +15,7 @@
   "sideEffects": false,
   "dependencies": {
     "react-swipeable-views": "0.13.9",
-    "react-swipeable-views-utils": "0.13.9"
+    "react-swipeable-views-utils": "0.14.0"
   },
   "devDependencies": {
     "@material-ui/core": "4.11.4",
