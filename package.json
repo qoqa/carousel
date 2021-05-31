@@ -14,8 +14,8 @@
   },
   "sideEffects": false,
   "dependencies": {
-    "react-swipeable-views": "0.13.9",
-    "react-swipeable-views-utils": "0.13.9"
+    "react-swipeable-views": "0.14.0",
+    "react-swipeable-views-utils": "0.14.0"
   },
   "devDependencies": {
     "@material-ui/core": "4.11.4",
@@ -24,8 +24,8 @@
     "@testing-library/react": "11.2.7",
     "@testing-library/user-event": "13.1.9",
     "@types/jest": "26.0.23",
-    "@types/node": "15.6.0",
-    "@types/react": "17.0.6",
+    "@types/node": "15.6.1",
+    "@types/react": "17.0.8",
     "@types/react-dom": "17.0.5",
     "eslint": "7.27.0",
     "eslint-config-prettier": "8.3.0",
@@ -40,10 +40,10 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-scripts": "4.0.3",
-    "rollup": "2.49.0",
+    "rollup": "2.50.5",
     "rollup-plugin-typescript2": "0.30.0",
     "rollup-plugin-virtual": "1.0.1",
-    "typescript": "4.2.4"
+    "typescript": "4.3.2"
   },
   "scripts": {
     "start": "react-scripts start",
