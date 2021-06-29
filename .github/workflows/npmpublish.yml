@@ -31,5 +31,5 @@ jobs:
         run: |
           yarn release
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GPR_GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.CHAPPIE_GITHUB_TOKEN }}
 
