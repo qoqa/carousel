@@ -60,11 +60,11 @@
   "scripts": {
     "start": "next dev",
     "start-production": "next start",
-    "build": "next build && next export --outdir build && touch build/.nojekyll",
+    "build": "next build && next export && touch out/.nojekyll",
     "lint": "eslint --ext js,ts,tsx src --max-warnings=0",
     "build:package": "rollup -c && node copy-package-json.js && cp README.md dist",
     "test": "jest test --coverage",
-    "deploy": "npx gh-pages -d build",
+    "deploy": "npx gh-pages -d out -t",
     "format": "yarn lint --fix",
     "release": "npm-run-all build:package && cd dist && npm publish",
     "validate": "CI=true npm-run-all lint test build validate:package",
