@@ -34,87 +34,98 @@ import image8Small from './images/8_small.jpg';
 import image9Small from './images/9_small.jpg';
 import image10Small from './images/10_small.jpg';
 
+function getImageUrl(staticImage: StaticImageData): string {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH;
+  const imageUrl = staticImage.src;
+
+  if (basePath?.length) {
+    return `${basePath}/${staticImage.src}`;
+  }
+
+  return imageUrl;
+}
+
 export interface DemoSlideType extends CarouselImageType {
   srcPreview: string;
 }
 
 export const slides: DemoSlideType[] = [
   {
-    src: image1.src,
-    srcWebp: image1Webp.src,
-    srcPreview: image1Small.src,
+    src: getImageUrl(image1),
+    srcWebp: getImageUrl(image1Webp),
+    srcPreview: getImageUrl(image1Small),
     alt: 'Image 1',
     width: 3840,
     height: 2243,
   },
   {
-    src: image2.src,
-    srcWebp: image2Webp.src,
-    srcPreview: image2Small.src,
+    src: getImageUrl(image2),
+    srcWebp: getImageUrl(image2Webp),
+    srcPreview: getImageUrl(image2Small),
     alt: 'Image 2',
     width: 3866,
     height: 2426,
   },
   {
-    src: image3.src,
-    srcWebp: image3Webp.src,
-    srcPreview: image3Small.src,
+    src: getImageUrl(image3),
+    srcWebp: getImageUrl(image3Webp),
+    srcPreview: getImageUrl(image3Small),
     alt: 'Image 3',
     width: 3953,
     height: 2965,
   },
   {
-    src: image4.src,
-    srcWebp: image4Webp.src,
-    srcPreview: image4Small.src,
+    src: getImageUrl(image4),
+    srcWebp: getImageUrl(image4Webp),
+    srcPreview: getImageUrl(image4Small),
     alt: 'Image 4',
     width: 4098,
     height: 2732,
   },
   {
-    src: image5.src,
-    srcWebp: image5Webp.src,
-    srcPreview: image5Small.src,
+    src: getImageUrl(image5),
+    srcWebp: getImageUrl(image5Webp),
+    srcPreview: getImageUrl(image5Small),
     alt: 'Image 5',
     width: 4124,
     height: 2600,
   },
   {
-    src: image6.src,
-    srcWebp: image6Webp.src,
-    srcPreview: image6Small.src,
+    src: getImageUrl(image6),
+    srcWebp: getImageUrl(image6Webp),
+    srcPreview: getImageUrl(image6Small),
     alt: 'Image 6',
     width: 4242,
     height: 2154,
   },
   {
-    src: image7.src,
-    srcWebp: image7Webp.src,
-    srcPreview: image7Small.src,
+    src: getImageUrl(image7),
+    srcWebp: getImageUrl(image7Webp),
+    srcPreview: getImageUrl(image7Small),
     alt: 'Image 7',
     width: 4940,
     height: 3280,
   },
   {
-    src: image8.src,
-    srcWebp: image8Webp.src,
-    srcPreview: image8Small.src,
+    src: getImageUrl(image8),
+    srcWebp: getImageUrl(image8Webp),
+    srcPreview: getImageUrl(image8Small),
     alt: 'Image 8',
     width: 5042,
     height: 3445,
   },
   {
-    src: image9.src,
-    srcWebp: image9Webp.src,
-    srcPreview: image9Small.src,
+    src: getImageUrl(image9),
+    srcWebp: getImageUrl(image9Webp),
+    srcPreview: getImageUrl(image9Small),
     alt: 'Image 9',
     width: 5163,
     height: 3442,
   },
   {
-    src: image10.src,
-    srcWebp: image10Webp.src,
-    srcPreview: image10Small.src,
+    src: getImageUrl(image10),
+    srcWebp: getImageUrl(image10Webp),
+    srcPreview: getImageUrl(image10Small),
     alt: 'Image 10',
     width: 5464,
     height: 3070,
