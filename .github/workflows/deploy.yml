@@ -34,7 +34,7 @@ jobs:
           CI: true
       - name: Build
         run: |
-          yarn build && touch build/.nojekyll
+          yarn build
         env:
           NEXT_PUBLIC_BASE_PATH: /carousel
       - name: Deploy
