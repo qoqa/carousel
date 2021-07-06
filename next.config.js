@@ -8,5 +8,6 @@ module.exports = {
   // read more here: https://nextjs.org/docs/api-reference/next/image
   images: {
     disableStaticImages: true,
+    path: process.env.NEXT_PUBLIC_BASE_PATH,
   },
 };
