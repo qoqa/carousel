@@ -30,3 +30,12 @@ yarn-error.log*
 
 dist/
 .eslintcache
+
+# next.js
+/.next/
+/out/
+*.pem
+# debug
+# local env files
+# vercel
+.vercel
