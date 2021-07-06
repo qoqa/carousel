@@ -60,7 +60,7 @@
   "scripts": {
     "start": "next dev",
     "start-production": "next start",
-    "build": "next build && next export --outdir build",
+    "build": "next build && next export --outdir build && touch build/.nojekyll",
     "lint": "eslint --ext js,ts,tsx src --max-warnings=0",
     "build:package": "rollup -c && node copy-package-json.js && cp README.md dist",
     "test": "jest test --coverage",
