@@ -34,7 +34,7 @@ jobs:
           CI: true
       - name: Build
         run: |
-          SKIP_PREFLIGHT_CHECK=true yarn build
+          yarn build
       - name: Deploy
         if: success()
         run: |
