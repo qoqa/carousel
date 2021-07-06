@@ -39,7 +39,7 @@ function getImageUrl(staticImage: StaticImageData): string {
   const imageUrl = staticImage.src;
 
   if (basePath?.length) {
-    return `${basePath}/${staticImage.src}`;
+    return `${basePath}/${imageUrl}`;
   }
 
   return imageUrl;
