@@ -6,7 +6,10 @@ class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <meta charSet="utf-8" />
-          <link rel="icon" href={`${process.env.PUBLIC_URL}/favicon.ico`} />
+          <link
+            rel="icon"
+            href={`${process.env.NEXT_PUBLIC_BASE_PATH}/favicon.ico`}
+          />
           <meta name="theme-color" content="#000000" />
           <meta
             name="description"
@@ -14,7 +17,7 @@ class MyDocument extends Document {
           />
           <link
             rel="manifest"
-            href={`${process.env.PUBLIC_URL}/manifest.json`}
+            href={`${process.env.NEXT_PUBLIC_BASE_PATH}/manifest.json`}
           />
           <noscript>You need to enable JavaScript to run this app.</noscript>
         </Head>
