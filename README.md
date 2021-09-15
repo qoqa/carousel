@@ -17,7 +17,7 @@ Add the following to your `.npmrc`
 @qoqa:registry=https://npm.pkg.github.com
 ```
 
-Then run `yarn add @qoqa/carousel`.
+Then run `npm install @qoqa/carousel`.
 
 ## Example
 
