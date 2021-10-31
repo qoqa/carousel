@@ -27,4 +27,4 @@ jobs:
         run: |
           git config --global user.email "dev+github-chappie@qoqa.com"
           git config --global user.name "${{ github.actor }}"
-          npm run deploy -x -r https://qoqa-chappie:${{ secrets.CHAPPIE_GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+          npm run deploy -x -r https://qoqa-chappie:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
