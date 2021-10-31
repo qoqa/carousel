@@ -3,7 +3,8 @@
     "react-app",
     "plugin:prettier/recommended",
     "plugin:jest-dom/recommended",
-    "plugin:testing-library/react"
+    "plugin:testing-library/react",
+    "plugin:@next/next/recommended"
   ],
   "plugins": ["prettier", "jest-dom", "testing-library"],
   "rules": {
@@ -17,6 +18,7 @@
       }
     ],
     "react/jsx-uses-react": "off",
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "@next/next/no-img-element": "off"
   }
 }

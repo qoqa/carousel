@@ -10,7 +10,12 @@ module.exports = {
   ],
   setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
   transform: {
-    '^.+\\.(js|jsx|ts|tsx)$': '<rootDir>/node_modules/babel-jest',
+    '^.+\\.(js|jsx|ts|tsx)$': [
+      '<rootDir>/node_modules/babel-jest',
+      {
+        presets: ['next/babel'],
+      },
+    ],
     '.(jpg|jpeg|png|otf|webp|ttf|woff|woff2|svg)$':
       '<rootDir>/src/test-utils/fileTransform.js',
   },
