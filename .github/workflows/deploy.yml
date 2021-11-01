@@ -21,7 +21,7 @@ jobs:
         run: |
           npm run build
         env:
-          NEXT_PUBLIC_BASE_PATH: /carousel
+          NEXT_PUBLIC_BASE_PATH: /
       - name: Deploy
         if: success()
         run: |
