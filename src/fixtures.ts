@@ -1,4 +1,4 @@
-import { CarouselTranslationsType, CarouselImageType } from './carousel';
+import { CarouselImageType, CarouselTranslationsType } from './carousel';
 
 // Test images
 import image1 from './images/1.jpg';
@@ -35,14 +35,7 @@ import image9Small from './images/9_small.jpg';
 import image10Small from './images/10_small.jpg';
 
 function getImageUrl(staticImage: StaticImageData): string {
-  const basePath = process.env.NEXT_PUBLIC_BASE_PATH;
-  const imageUrl = staticImage.src;
-
-  if (basePath?.length) {
-    return `${basePath}/${imageUrl}`;
-  }
-
-  return imageUrl;
+  return staticImage.src;
 }
 
 export interface DemoSlideType extends CarouselImageType {
